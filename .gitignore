@@ -5,3 +5,5 @@
 /CppProperties.json
 /.vs
 /Build
+/bin
+/out/build/x64-Debug
