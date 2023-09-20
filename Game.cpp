@@ -1,20 +1,19 @@
 #include "Game.h"
+#include <iostream>
 
-Game::Game()
+Game::Game(sf::RenderWindow* window)
 {
-	this->running = false;
+	this->renderWindow = window;
+	this->running = true;
 }
 
 Game::~Game()
 {
-	delete this->renderWindow;
-	delete this->vectorEntities;
-	delete this->controller;
-	delete this->event;
 }
 
 void Game::updateFrame()
 {
+	this->renderWindow->display();
 }
 
 void Game::startGame()

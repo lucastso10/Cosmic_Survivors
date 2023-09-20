@@ -8,17 +8,16 @@ class Game
 private:
 	sf::RenderWindow* renderWindow;
 
-	std::vector<Entity> vectorEntities;
+	//std::vector<Entity> vectorEntities;
 
-	Controller controller;
+	//Controller controller;
 
 	bool running;
 
 	sf::Event event;
-
 public:
 
-	Game();
+	Game(sf::RenderWindow* window);
 	~Game();
 
 	void updateFrame();
