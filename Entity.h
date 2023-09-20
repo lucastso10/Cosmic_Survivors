@@ -12,7 +12,7 @@ public:
 	void onDeath();
 
 
-protected:
+private:
 	Vector2f local;
 	float health;
 	float armor;
