@@ -10,6 +10,11 @@ Game::~Game()
 {
 }
 
+bool Game::getEvents(sf::Event &event)
+{
+	return this->renderWindow->pollEvent(event);
+}
+
 void Game::updateFrame()
 {
 	this->renderWindow->display();

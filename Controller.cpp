@@ -12,25 +12,30 @@ Controller::~Controller()
 
 void Controller::eventHandler()
 {
-	switch (this->event.type)
+
+	while(this->game->getEvents(this->event))
 	{
-	case sf::Event::KeyPressed:
-
-		switch (this->event.key.code)
+		switch (this->event.type)
 		{
-		case sf::Keyboard::Right :
-			std::cout << "Right key pressed!\n";
-			break;	
+		case sf::Event::KeyPressed:
 
+			switch (this->event.key.code)
+			{
+			case sf::Keyboard::Right :
+				std::cout << "Right key pressed!\n";
+				break;	
+			default:
+				break;
+			}
+
+			break;
+
+		case sf::Event::Closed :
+			this->game->quitGame();
+			break; 
+		default:
+			break;
 		}
-
-		break;
-
-	case sf::Event::Closed :
-		this->game->quitGame();
-		break; 
-	default:
-		break;
 	}
 }
 

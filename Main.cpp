@@ -1,8 +1,6 @@
 // includes SFML
-#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
+#include <iostream>
 
 // includes locais
 #include "Game.h"
@@ -20,7 +18,6 @@ int main()
 	while(game.isRunning()){
 
 		controller.eventHandler();
-
 		game.updateFrame();
 	}
 

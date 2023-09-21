@@ -2,7 +2,8 @@
 #ifndef _GAME_H
 #define _GAME_H
 
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 //#include "Entity.h"
 
@@ -20,9 +21,9 @@ public:
 	Game(sf::RenderWindow* window);
 	~Game();
 
-	void updateFrame();
+	bool getEvents(sf::Event &event);
 
-	void pollEvents();
+	void updateFrame();
 
 	void startGame();
 
