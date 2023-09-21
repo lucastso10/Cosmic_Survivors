@@ -1,5 +1,4 @@
 #include "Game.h"
-#include <iostream>
 
 Game::Game(sf::RenderWindow* window)
 {
@@ -13,16 +12,9 @@ Game::~Game()
 
 void Game::updateFrame()
 {
-	while(this->renderWindow->pollEvent(this->event))
-	{
-		if(this->event.type == sf::Event::Closed){
-			this->renderWindow->close();
-			this->quitGame();
-		}
-	}
-
 	this->renderWindow->display();
 }
+
 
 void Game::startGame()
 {

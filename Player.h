@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Weapon.h"
 
-class Player : public Entity , public Weapon
+class Player : public Entity
 {
 public:
 	void levelUp();

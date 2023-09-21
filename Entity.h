@@ -10,6 +10,7 @@ public:
 	bool isOnScreen();
 	void move();
 	void onDeath();
+	bool isDead();
 
 
 private:

@@ -1,7 +1,10 @@
-#pragma once
+//#pragma once
+#ifndef _GAME_H
+#define _GAME_H
 
-#include "Entity.h"
-#include "Controller.h"
+#include <SFML/Graphics/RenderWindow.hpp>
+
+//#include "Entity.h"
 
 class Game
 {
@@ -10,17 +13,16 @@ private:
 
 	//std::vector<Entity> vectorEntities;
 
-	//Controller controller;
-
 	bool running;
 
-	sf::Event event;
 public:
 
 	Game(sf::RenderWindow* window);
 	~Game();
 
 	void updateFrame();
+
+	void pollEvents();
 
 	void startGame();
 
@@ -31,3 +33,4 @@ public:
 	bool isRunning();
 };
 
+#endif
