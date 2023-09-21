@@ -9,11 +9,8 @@
 class Controller
 {
 private:
-
 	sf::Event event;
-
 	Game* game;
-
 	std::vector<bool> flags;
 
 public:

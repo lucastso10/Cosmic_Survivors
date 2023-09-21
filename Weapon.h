@@ -1,4 +1,7 @@
-#pragma once
+//#pragma once
+#ifndef _WEAPON_H
+#define _WEAPON_H
+
 class Weapon 
 {
 public:
@@ -6,7 +9,6 @@ public:
 	void attack();
 
 private:
-
 	float baseDamage;
 	float armorPenetration;
 	float criticalChance;
@@ -15,3 +17,4 @@ private:
 
 };
 
+#endif

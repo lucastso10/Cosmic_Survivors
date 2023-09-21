@@ -1,8 +1,8 @@
 #include "Map.h"
 
-Map::Map(string file)
+Map::Map(std::string file)
 {
-	this->texture.
+	//this->texture
 }
 
 Map::~Map()

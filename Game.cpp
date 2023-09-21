@@ -15,6 +15,7 @@ bool Game::getEvents(sf::Event &event)
 	return this->renderWindow->pollEvent(event);
 }
 
+// todos o que vai ser desenhado na tela precisa acontecer aqui
 void Game::updateFrame()
 {
 	this->renderWindow->display();
@@ -25,10 +26,12 @@ void Game::startGame()
 {
 }
 
+// talvez criar um booleano para checar se o jogo está pausado?
 void Game::pauseGame()
 {
 }
 
+// precisa limpar a memoria antes
 void Game::quitGame()
 {
 	this->running = false;

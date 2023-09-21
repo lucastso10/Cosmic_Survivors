@@ -11,9 +11,7 @@ class Game
 {
 private:
 	sf::RenderWindow* renderWindow;
-
 	//std::vector<Entity> vectorEntities;
-
 	bool running;
 
 public:
@@ -22,15 +20,10 @@ public:
 	~Game();
 
 	bool getEvents(sf::Event &event);
-
 	void updateFrame();
-
 	void startGame();
-
 	void pauseGame();
-
 	void quitGame();
-
 	bool isRunning();
 };
 

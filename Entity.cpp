@@ -2,8 +2,12 @@
 
 Entity::Entity(sf::Sprite sprite, bool stationary)
 {
-	this->sprite = sprite;
-	this->stationary = stationary;
+	//this->sprite = sprite;
+	//this->stationary = stationary;
+}
+
+Entity::~Entity()
+{
 }
 
 bool Entity::isOnScreen()
@@ -13,14 +17,14 @@ bool Entity::isOnScreen()
 
 void Entity::move(sf::Vector2f direction)
 {
-	this->sprite.move(direction);
+	//this->sprite.move(direction);
 }
 
 void Entity::onDeath()
 {
 }
 
-void Entity::isDead()
+bool Entity::isDead()
 {
 	return this->health <= 0;
 }
