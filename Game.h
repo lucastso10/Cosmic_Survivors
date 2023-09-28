@@ -5,13 +5,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-//#include "Entity.h"
+#include "Enemy.h"
+#include "Player.h"
 
 class Game
 {
 private:
 	sf::RenderWindow* renderWindow;
-	//std::vector<Entity> vectorEntities;
+	Player player;
+	std::vector<Entity> Enemies;
 	bool running;
 
 public:

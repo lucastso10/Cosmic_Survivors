@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include <SFML/Graphics/texture.hpp>
+#include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 
 class Map

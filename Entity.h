@@ -2,23 +2,21 @@
 #ifndef _ENTITY_H
 #define _ENTITY_H
 
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-using namespace sf;
-
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
 class Entity
 {
 private:
-	Vector2f local;
+	sf::Vector2f local;
 	float health;
 	float armor;
-	bool stationary;
 	float speed;
-	Sprite sprite;
+	bool stationary;
+	sf::Sprite sprite;
 
 public:
-	Entity(sf::Sprite sprite, bool stationary);
+	Entity(sf::Sprite sprite, sf::Vector2f start_pos, bool stationary);
 	~Entity();
 
 	bool isOnScreen();

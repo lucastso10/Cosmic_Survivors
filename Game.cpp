@@ -24,6 +24,8 @@ void Game::updateFrame()
 
 void Game::startGame()
 {
+	Player p = new Player;
+	this->player = p;
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?

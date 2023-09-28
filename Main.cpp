@@ -3,27 +3,23 @@
 #include <iostream>
 
 // includes locais
-#include "Game.h"
 #include "Controller.h"
+#include "Game.h"
 
+int main() {
+  // a resolução pode ser dinamica no futuro!
+  sf::RenderWindow window(sf::VideoMode(800, 600), "Wipe Out!");
 
-int main()
-{
-	// a resolução pode ser dinamica no futuro!
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Wipe Out!");
+  Game game(&window);
 
-	Game game(&window);
-	
-	Controller controller(&game);
+  Controller controller(&game);
 
-	// main loop do game!
-	while(game.isRunning()){
+  // main loop do game!
+  while (game.isRunning()) {
 
-		controller.eventHandler();
-		
-		game.updateFrame();
+    controller.eventHandler();
 
-	}
-
-    return 0;
+    game.updateFrame();
+  }
+  return 0;
 }
