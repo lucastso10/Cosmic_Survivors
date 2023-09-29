@@ -15,12 +15,13 @@ FetchContent_MakeAvailable(SFML)
 
 
 file(GLOB source_files
-	"*.cpp"
+	"src/*.cpp"
 )
 
 set(SOURCES ${source_files})
 
 add_executable(${PROJECT_NAME} ${SOURCES})
+target_include_directories(${PROJECT_NAME} PRIVATE include/)
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE sfml-graphics)
 target_compile_features("${PROJECT_NAME}" PRIVATE cxx_std_17)

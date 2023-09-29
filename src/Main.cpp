@@ -14,6 +14,8 @@ int main() {
 
   Controller controller(&game);
 
+  game.startGame();
+
   // main loop do game!
   while (game.isRunning()) {
 

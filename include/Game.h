@@ -12,16 +12,19 @@ class Game
 {
 private:
 	sf::RenderWindow* renderWindow;
-	Player player;
-	std::vector<Entity> Enemies;
-	bool running;
+	Player* player;
+	std::vector<Enemy> Enemies;
+	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
+	bool inMenu; // Checa se está em algum menu
 
 public:
 
 	Game(sf::RenderWindow* window);
 	~Game();
 
+	void movePlayer(sf::Vector2f dist);
 	bool getEvents(sf::Event &event);
+	bool isInMenu();
 	void updateFrame();
 	void startGame();
 	void pauseGame();

@@ -10,9 +10,12 @@ class Player : public Entity
 private:
 	int xp;
 	int level;
-	Weapon weapon;
+	// Weapon weapon;
 
 public:
+	Player(sf::Sprite sprite, sf::Vector2f start_pos);
+	~Player();
+
 	void levelUp();
 };
 

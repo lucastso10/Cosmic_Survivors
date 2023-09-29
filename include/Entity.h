@@ -8,16 +8,25 @@
 class Entity
 {
 private:
+	// removi stationary, um objeto imovel tem que ser sua propria classe!
 	sf::Vector2f local;
 	float health;
 	float armor;
 	float speed;
-	bool stationary;
+	sf::Texture texture;
 	sf::Sprite sprite;
 
 public:
-	Entity(sf::Sprite sprite, sf::Vector2f start_pos, bool stationary);
-	~Entity();
+
+	void setPos(sf::Vector2f pos);
+	sf::Vector2f getPos();
+
+	void setSprite(sf::Sprite sprite);
+	sf::Sprite getSprite();
+
+	void setTexture(sf::Texture texture);
+
+	void setStationary(bool stat);
 
 	bool isOnScreen();
 	void move(sf::Vector2f direction);

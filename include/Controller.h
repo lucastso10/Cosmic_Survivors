@@ -11,7 +11,7 @@ class Controller
 private:
 	sf::Event event;
 	Game* game;
-	std::vector<bool> flags;
+	std::map<const sf::Keyboard::Key, bool> flags;
 
 public:
 	Controller(Game* game);
