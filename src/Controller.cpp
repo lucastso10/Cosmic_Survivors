@@ -4,10 +4,10 @@ Controller::Controller(Game* game)
 {
 	this->game = game;
 	this->flags = {
-		{sf::Keyboard::Right, false},
-		{sf::Keyboard::Left , false},
-		{sf::Keyboard::Up   , false},
-		{sf::Keyboard::Down , false},
+		{sf::Keyboard::D  , false},
+		{sf::Keyboard::A  , false},
+		{sf::Keyboard::W  , false},
+		{sf::Keyboard::S  , false},
 	};
 }
 
@@ -38,17 +38,17 @@ void Controller::eventHandler()
 				switch (this->event.key.code) 
 				{
 				// tecla direita
-					case sf::Keyboard::Right :
-						this->flags[sf::Keyboard::Right] = true;
+					case sf::Keyboard::D :
+						this->flags[sf::Keyboard::D] = true;
 						break;
-					case sf::Keyboard::Left :
-						this->flags[sf::Keyboard::Left] = true;
+					case sf::Keyboard::A :
+						this->flags[sf::Keyboard::A] = true;
 						break;
-					case sf::Keyboard::Up :
-						this->flags[sf::Keyboard::Up] = true;
+					case sf::Keyboard::W :
+						this->flags[sf::Keyboard::W] = true;
 						break;
-					case sf::Keyboard::Down :
-						this->flags[sf::Keyboard::Down] = true;
+					case sf::Keyboard::S :
+						this->flags[sf::Keyboard::S] = true;
 						break;
 					default:
 						break;
@@ -58,17 +58,17 @@ void Controller::eventHandler()
 				switch (this->event.key.code)
 				{
 					// tecla direita
-				case sf::Keyboard::Right:
-					this->flags[sf::Keyboard::Right] = false;
+				case sf::Keyboard::D :
+					this->flags[sf::Keyboard::D] = false;
 					break;
-				case sf::Keyboard::Left:
-					this->flags[sf::Keyboard::Left] = false;
+				case sf::Keyboard::A :
+					this->flags[sf::Keyboard::A] = false;
 					break;
-				case sf::Keyboard::Up:
-					this->flags[sf::Keyboard::Up] = false;
+				case sf::Keyboard::W :
+					this->flags[sf::Keyboard::W] = false;
 					break;
-				case sf::Keyboard::Down:
-					this->flags[sf::Keyboard::Down] = false;
+				case sf::Keyboard::S :
+					this->flags[sf::Keyboard::S] = false;
 					break;
 				default:
 					break;
@@ -84,16 +84,16 @@ void Controller::eventHandler()
 	}
 
 	// tratando as flags, talvez tenha um melho jeito de fazer isso
-	if (this->flags[sf::Keyboard::Right])
+	if (this->flags[sf::Keyboard::D])
 		this->game->movePlayer(sf::Vector2f(0.1f, 0.0f));
 
-	if (this->flags[sf::Keyboard::Left])
+	if (this->flags[sf::Keyboard::A])
 		this->game->movePlayer(sf::Vector2f(-0.1f, 0.0f));
 
-	if (this->flags[sf::Keyboard::Up])
+	if (this->flags[sf::Keyboard::W])
 		this->game->movePlayer(sf::Vector2f(0.0f, -0.1f));
 
-	if (this->flags[sf::Keyboard::Down])
+	if (this->flags[sf::Keyboard::S])
 		this->game->movePlayer(sf::Vector2f(0.0f, 0.1f));
 }
 
