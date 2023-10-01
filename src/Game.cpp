@@ -6,6 +6,8 @@ Game::Game(sf::RenderWindow* window)
 	this->renderWindow = window;
 	this->running = true;
 	this->inMenu = true;
+	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
+	
 }
 
 Game::~Game()
@@ -37,8 +39,15 @@ void Game::updateFrame()
 	else {
 		this->renderWindow->clear(sf::Color::Black);
 		this->renderWindow->draw(this->player->getSprite());
+		
+		if (!enemies.empty()) {
+			for (auto& enemy : this->enemies) {
+				this->renderWindow->draw(enemy->getSprite());
+				enemy->goToPlayer(this->player->getPos());
+			}
+			
+		}
 	}
-
 	this->renderWindow->display();
 }
 
@@ -48,6 +57,14 @@ void Game::startGame()
 	this->inMenu = false;
 	Player* p = new Player("../images/Player/move.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
+	
+
+	for (int i = 0; i < 5; i++) {
+		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i*15,i*10));
+		enemies.push_back(e);
+		
+	}
+	
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?

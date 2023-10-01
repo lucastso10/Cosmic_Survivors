@@ -13,9 +13,10 @@ class Game
 private:
 	sf::RenderWindow* renderWindow;
 	Player* player;
-	std::vector<Enemy> Enemies;
+	std::vector<Enemy*> enemies;
 	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
 	bool inMenu; // Checa se está em algum menu
+	//int spawnEnemyTimer;
 
 public:
 
@@ -30,6 +31,9 @@ public:
 	void pauseGame();
 	void quitGame();
 	bool isRunning();
+
+	
+	
 };
 
 #endif
