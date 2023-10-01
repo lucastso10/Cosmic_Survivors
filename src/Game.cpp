@@ -6,7 +6,7 @@ Game::Game(sf::RenderWindow* window)
 	this->renderWindow = window;
 	this->running = true;
 	this->inMenu = true;
-	this->Enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
+	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
 	
 }
 
@@ -40,12 +40,10 @@ void Game::updateFrame()
 		this->renderWindow->clear(sf::Color::Black);
 		this->renderWindow->draw(this->player->getSprite());
 		
-		if (!Enemies.empty()) {
-			for (int i = 0; i < Enemies.size(); i++){ 
-				this->renderWindow->draw(this->Enemies[i]->getSprite());
-				
-				//Enemies[i]->teste(this->player->getPos());
-				Enemies[i]->goToPlayer(this->player->getPos());
+		if (!enemies.empty()) {
+			for (auto& enemy : this->enemies) {
+				this->renderWindow->draw(enemy->getSprite());
+				enemy->goToPlayer(this->player->getPos());
 			}
 			
 		}
@@ -63,7 +61,7 @@ void Game::startGame()
 
 	for (int i = 0; i < 5; i++) {
 		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i*15,i*10));
-		Enemies.push_back(e);
+		enemies.push_back(e);
 		
 	}
 	
