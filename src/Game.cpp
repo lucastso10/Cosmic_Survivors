@@ -57,7 +57,7 @@ void Game::updateFrame()
 void Game::startGame()
 {
 	this->inMenu = false;
-	Player* p = new Player("../images/Peter_Griffin.png", sf::Vector2f(200.0f, 150.0f));
+	Player* p = new Player("../images/Player/move.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
 	
 
