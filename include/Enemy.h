@@ -17,7 +17,7 @@ public:
 
 	void attack();
 	void goToPlayer(sf::Vector2f);
-	
+	//sf::Vector2f teste(sf::Vector2f);
 };
 
 #endif

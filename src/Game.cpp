@@ -7,7 +7,7 @@ Game::Game(sf::RenderWindow* window)
 	this->running = true;
 	this->inMenu = true;
 	this->Enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
-
+	
 }
 
 Game::~Game()
@@ -43,9 +43,9 @@ void Game::updateFrame()
 		if (!Enemies.empty()) {
 			for (int i = 0; i < Enemies.size(); i++){ 
 				this->renderWindow->draw(this->Enemies[i]->getSprite());
+				
+				//Enemies[i]->teste(this->player->getPos());
 				Enemies[i]->goToPlayer(this->player->getPos());
-				
-				
 			}
 			
 		}
