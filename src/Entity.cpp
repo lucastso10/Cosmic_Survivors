@@ -8,12 +8,11 @@ bool Entity::isOnScreen()
 void Entity::setPos(sf::Vector2f pos)
 {
 	this->sprite.setPosition(pos);
-	this->local = pos;
 }
 
 sf::Vector2f Entity::getPos()
 {
-	return this->local;
+	return this->sprite.getPosition();
 }
 
 void Entity::setSprite(sf::Sprite sprite)
