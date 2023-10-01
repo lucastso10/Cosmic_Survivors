@@ -41,15 +41,15 @@ void Game::updateFrame()
 		this->renderWindow->draw(this->player->getSprite());
 		
 		if (!Enemies.empty()) {
-			for (enemyIt = Enemies.begin(); enemyIt != Enemies.end(); enemyIt++) {
-				this->renderWindow->draw(this->Enemies.front()->getSprite());
+			for (int i = 0; i < Enemies.size(); i++){ 
+				this->renderWindow->draw(this->Enemies[i]->getSprite());
+				Enemies[i]->goToPlayer(this->player->getPos());
+				
+				
 			}
+			
 		}
-		
-		
-		
 	}
-
 	this->renderWindow->display();
 }
 
@@ -59,14 +59,13 @@ void Game::startGame()
 	this->inMenu = false;
 	Player* p = new Player("../images/Peter_Griffin.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
-
-	sf::Texture enemyTexture;
-	enemyTexture.loadFromFile("../images/enemy.png");
-	sf::Sprite enemySprite;
-	enemySprite.setTexture(enemyTexture);
 	
-	Enemy* e = new Enemy(enemySprite, sf::Vector2f(0.0f, 0.0f));
-	Enemies.push_back(e);
+
+	for (int i = 0; i < 5; i++) {
+		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i*15,i*10));
+		Enemies.push_back(e);
+		
+	}
 	
 }
 

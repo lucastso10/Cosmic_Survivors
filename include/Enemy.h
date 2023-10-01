@@ -8,15 +8,16 @@ class Enemy : public Entity
 {
 private:
 	float dano;
-	
+	sf::Vector2f Pos;
+
 
 public:
-	Enemy(sf::Sprite, sf::Vector2f);
+	Enemy(std::string, sf::Vector2f);
 	~Enemy();
 
 	void attack();
-	void goToPlayer();
-
+	void goToPlayer(sf::Vector2f);
+	
 };
 
 #endif
