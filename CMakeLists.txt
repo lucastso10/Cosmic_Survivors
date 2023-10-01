@@ -16,6 +16,7 @@ FetchContent_MakeAvailable(SFML)
 
 file(GLOB source_files
 	"src/*.cpp"
+	"include/*.h"
 )
 
 set(SOURCES ${source_files})
