@@ -2,13 +2,10 @@
 
 Game::Game(sf::RenderWindow* window)
 {
-	// o jogador só é carregado quando o jogo inicia
-	this->player = nullptr;
+	this->player = nullptr; // o jogador só é carregado quando o jogo inicia
 	this->renderWindow = window;
 	this->running = true;
 	this->inMenu = true;
-
-
 }
 
 Game::~Game()
@@ -49,11 +46,7 @@ void Game::updateFrame()
 void Game::startGame()
 {
 	this->inMenu = false;
-	sf::Texture texture;
-	texture.loadFromFile("../images/Peter_Griffin.png");
-	sf::Sprite sprite;
-	sprite.setTexture(texture);
-	Player* p = new Player(sprite, sf::Vector2f(200.0f, 150.0f));
+	Player* p = new Player("../images/Peter_Griffin.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
 }
 

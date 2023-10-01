@@ -1,11 +1,19 @@
 #include "Player.h"
 
-Player::Player(sf::Sprite sprite, sf::Vector2f start_pos)
+Player::Player(std::string file, sf::Vector2f start_pos)
 {
 	this->xp = 0;
 	this->level = 0;
 	//this->weapon = 
+
+	sf::Texture* texture = new sf::Texture;
+	sf::Sprite sprite;
+
+	texture->loadFromFile(file);
+	sprite.setTexture(*texture);
 	
+
+	this->setTexture(texture);
 	this->setSprite(sprite);
 	this->setPos(start_pos);
 }

@@ -26,7 +26,7 @@ sf::Sprite Entity::getSprite()
 	return this->sprite;
 }
 
-void Entity::setTexture(sf::Texture texture)
+void Entity::setTexture(sf::Texture* texture)
 {
 	this->texture = texture;
 }

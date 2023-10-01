@@ -13,7 +13,7 @@ private:
 	// Weapon weapon;
 
 public:
-	Player(sf::Sprite sprite, sf::Vector2f start_pos);
+	Player(std::string file, sf::Vector2f start_pos);
 	~Player();
 
 	void levelUp();

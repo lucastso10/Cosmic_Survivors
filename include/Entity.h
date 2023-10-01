@@ -13,7 +13,7 @@ private:
 	float health;
 	float armor;
 	float speed;
-	sf::Texture texture;
+	sf::Texture* texture;
 	sf::Sprite sprite;
 
 public:
@@ -24,7 +24,7 @@ public:
 	void setSprite(sf::Sprite sprite);
 	sf::Sprite getSprite();
 
-	void setTexture(sf::Texture texture);
+	void setTexture(sf::Texture* texture);
 
 	void setStationary(bool stat);
 
