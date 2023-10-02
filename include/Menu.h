@@ -28,5 +28,5 @@ public:
 	Menu(Game *game);
 	~Menu();	
 	void run_menu();
-
+	void startgame_button();
 };

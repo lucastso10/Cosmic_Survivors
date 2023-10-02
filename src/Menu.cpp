@@ -21,7 +21,7 @@ void Menu::set_values() {
 	pressed = theselect = false;
 
 	font->loadFromFile("../fonte/kenneypixel.ttf");
-	image->loadFromFile("../images/telaprimeira.jpg");
+	image->loadFromFile("../images/telaprimeiradef.jpg");
 	
 	bg->setTexture(*image);
 
@@ -29,8 +29,13 @@ void Menu::set_values() {
 }
 
 void Menu::draw_all() {
-	//game->
-	 
+	game->getRenderWindow()->clear(sf::Color::Black);
+	game->getRenderWindow()->draw(*bg);
+	game->getRenderWindow()->display();
+}
+
+void Menu::startgame_button() {
+	game->startGame();
 }
 
 void Menu::run_menu() {

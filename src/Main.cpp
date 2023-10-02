@@ -9,15 +9,18 @@
 
 int main() {
   // a resolução pode ser dinamica no futuro!
-  sf::RenderWindow window(sf::VideoMode(800, 600), "Wipe Out!");
+  sf::RenderWindow window(sf::VideoMode(1360, 750), "Wipe Out!");
 
   Game game(&window);
-
-  Controller controller(&game);
-
   Menu menu(&game);
 
+  Controller controller(&game, &menu);
+
+  
+
   // main loop do game!
+  //menu.run_menu();
+
   while (game.isRunning()) {
 
     controller.eventHandler();
