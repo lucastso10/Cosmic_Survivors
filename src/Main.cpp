@@ -5,6 +5,7 @@
 // includes locais
 #include "Controller.h"
 #include "Game.h"
+#include "Menu.h"
 
 int main() {
   // a resolução pode ser dinamica no futuro!
@@ -14,14 +15,17 @@ int main() {
 
   Controller controller(&game);
 
-  game.startGame();
+  Menu menu(&game);
 
   // main loop do game!
   while (game.isRunning()) {
 
     controller.eventHandler();
 
-    game.updateFrame();
+    if (game.isInMenu()) {
+        menu.run_menu();
+    }
+    else{game.updateFrame();}
   }
   return 0;
 }
