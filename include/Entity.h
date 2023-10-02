@@ -9,7 +9,6 @@ class Entity
 {
 private:
 	// removi stationary, um objeto imovel tem que ser sua propria classe!
-	sf::Vector2f local;
 	float health;
 	float armor;
 	float speed;

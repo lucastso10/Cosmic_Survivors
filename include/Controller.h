@@ -18,6 +18,7 @@ public:
 	~Controller();
 
 	void eventHandler();
+	void eventHandlerGame();
 	void interpretKey();
 };
 
