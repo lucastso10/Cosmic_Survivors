@@ -1,8 +1,9 @@
 #include "Controller.h"
 
-Controller::Controller(Game* game)
+Controller::Controller(Game* game, Menu* menu)
 {
 	this->game = game;
+	this->menu = menu;
 	this->flags = {
 		{sf::Keyboard::D  , false},
 		{sf::Keyboard::A  , false},
@@ -18,13 +19,33 @@ Controller::~Controller()
 void Controller::eventHandler()
 {
 	if (this->game->isInMenu()) {
-
+		this->eventHandlerMenu();
 	}
 	else {
 		this->eventHandlerGame();
 	}
 }
+//530 480
+//828 544
+void Controller::eventHandlerMenu() {
+	while (this->game->getEvents(this->event))
+	{
+		switch (this->event.type) {
+			case sf::Event::MouseButtonReleased: 
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					if (event.mouseButton.x >= 530 && event.mouseButton.x <= 828 && event.mouseButton.y >= 480 && event.mouseButton.y <= 544) {
+						menu->startgame_button();
+					}
+				}
+				break;
+		
+			case sf::Event::Closed:
+				this->game->quitGame();
+				break;
+		}
+	}
 
+}
 void Controller::eventHandlerGame() 
 {
 	/*

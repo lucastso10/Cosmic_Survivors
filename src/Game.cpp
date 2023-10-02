@@ -14,6 +14,11 @@ Game::~Game()
 {
 }
 
+sf::RenderWindow* Game::getRenderWindow()
+{
+	return this->renderWindow;
+}
+
 bool Game::getEvents(sf::Event &event)
 {
 	return this->renderWindow->pollEvent(event);
