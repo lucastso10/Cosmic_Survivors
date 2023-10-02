@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include <iostream>
 bool Entity::isOnScreen()
 {
     return false;
@@ -42,4 +42,9 @@ void Entity::onDeath()
 bool Entity::isDead()
 {
 	return this->health <= 0;
+}
+
+sf::FloatRect Entity::getBounds(sf::Sprite sprite)
+{
+	return sprite.getGlobalBounds();
 }

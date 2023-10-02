@@ -1,4 +1,3 @@
-//#pragma once
 #ifndef _ENEMY_H
 #define _ENEMY_H
 
@@ -17,6 +16,7 @@ public:
 
 	void attack();
 	void goToPlayer(sf::Vector2f);
+	
 	//sf::Vector2f teste(sf::Vector2f);
 };
 

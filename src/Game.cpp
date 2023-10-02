@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include <iostream>
 Game::Game(sf::RenderWindow* window)
 {
 	this->player = nullptr; // o jogador só é carregado quando o jogo inicia
