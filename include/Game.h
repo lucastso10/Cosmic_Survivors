@@ -25,6 +25,7 @@ public:
 
 	void movePlayer(sf::Vector2f dist);
 	bool getEvents(sf::Event &event);
+	sf::RenderWindow* getRenderWindow();
 	bool isInMenu();
 	void updateFrame();
 	void startGame();
