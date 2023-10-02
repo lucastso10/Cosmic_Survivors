@@ -19,7 +19,7 @@ Controller::~Controller()
 void Controller::eventHandler()
 {
 	if (this->game->isInMenu()) {
-
+		this->eventHandlerMenu();
 	}
 	else {
 		this->eventHandlerGame();
@@ -33,7 +33,6 @@ void Controller::eventHandlerMenu() {
 		switch (this->event.type) {
 			case sf::Event::MouseButtonReleased: 
 				if (event.mouseButton.button == sf::Mouse::Left) {
-					std::cout << "BANANA";
 					if (event.mouseButton.x >= 530 && event.mouseButton.x <= 828 && event.mouseButton.y >= 480 && event.mouseButton.y <= 544) {
 						menu->startgame_button();
 					}
