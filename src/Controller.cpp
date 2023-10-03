@@ -83,12 +83,12 @@ void Controller::eventHandlerGame()
 					}
 				}
 			break;
-		// evento para fechar o jogo
-		case sf::Event::Closed:
-			this->game->quitGame();
-			break;
-		default:
-			break;
+			// evento para fechar o jogo
+			case sf::Event::Closed:
+				this->game->quitGame();
+				break;
+			default:
+				break;
 		}
 	}
 
