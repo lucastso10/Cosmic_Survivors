@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27.2)
+cmake_minimum_required(VERSION 3.26.4)
 set(PROJECT_NAME Wipe_Out)
 project(${PROJECT_NAME} LANGUAGES CXX)
 

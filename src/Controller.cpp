@@ -25,8 +25,7 @@ void Controller::eventHandler()
 		this->eventHandlerGame();
 	}
 }
-//530 480
-//828 544
+
 void Controller::eventHandlerMenu() {
 	while (this->game->getEvents(this->event))
 	{
@@ -64,48 +63,27 @@ void Controller::eventHandlerGame()
 			de um jeito mais esperto, pra toda a vez que a gente quiser adiciona uma
 			tecla nova não ter que adiciona aqui no map e no ifs lá me baixo
 			*/
-			// eventos do tipo tecla foi apertada
-		case sf::Event::KeyPressed:
-			switch (this->event.key.code)
-			{
-				// tecla direita
-			case sf::Keyboard::D:
-				this->flags[sf::Keyboard::D] = true;
+			// evento do tipo tecla foi apertada
+			case sf::Event::KeyPressed:
+				// checa o mapa flags e se a tecla estiver nele marca a flag como true
+				for (auto& key : this->flags){
+					if (this->event.key.code == key.first){
+						this->flags[this->event.key.code] = true;
+						break;
+					}
+				}
 				break;
-			case sf::Keyboard::A:
-				this->flags[sf::Keyboard::A] = true;
-				break;
-			case sf::Keyboard::W:
-				this->flags[sf::Keyboard::W] = true;
-				break;
-			case sf::Keyboard::S:
-				this->flags[sf::Keyboard::S] = true;
-				break;
-			default:
-				break;
-			}
+			// evento soltar tecla
+			case sf::Event::KeyReleased:
+				// faz a mesma coisa que o de cima só que marca false
+				for (auto& key : this->flags){
+					if (this->event.key.code == key.first){
+						this->flags[this->event.key.code] = false;
+						break;
+					}
+				}
 			break;
-		case sf::Event::KeyReleased:
-			switch (this->event.key.code)
-			{
-				// tecla direita
-			case sf::Keyboard::D:
-				this->flags[sf::Keyboard::D] = false;
-				break;
-			case sf::Keyboard::A:
-				this->flags[sf::Keyboard::A] = false;
-				break;
-			case sf::Keyboard::W:
-				this->flags[sf::Keyboard::W] = false;
-				break;
-			case sf::Keyboard::S:
-				this->flags[sf::Keyboard::S] = false;
-				break;
-			default:
-				break;
-			}
-			break;
-			// evento para fechar o jogo
+		// evento para fechar o jogo
 		case sf::Event::Closed:
 			this->game->quitGame();
 			break;
