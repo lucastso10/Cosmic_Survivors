@@ -35,7 +35,7 @@ void Entity::move(sf::Vector2f direction)
 	this->sprite.move(direction);
 }
 
-void Entity::onDeath()
+void Entity::onDeath() // isso pode ser especifico de cada tipo de entidade
 {
 }
 

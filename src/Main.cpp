@@ -19,16 +19,16 @@ int main() {
   
 
   // main loop do game!
-  //menu.run_menu();
-
   while (game.isRunning()) {
 
     controller.eventHandler();
 
-    if (game.isInMenu()) {
+    if (game.isInMenu()) { // esse if pode ir dentro de updateFrame
         menu.run_menu();
     }
-    else{game.updateFrame();}
+    else{
+	game.updateFrame();
+    }
   }
   return 0;
 }
