@@ -1,4 +1,6 @@
-#pragma once
+//#pragma once
+#ifndef _MENU_H
+#define _MENU_H
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -30,3 +32,5 @@ public:
 	void run_menu();
 	void startgame_button();
 };
+
+#endif
