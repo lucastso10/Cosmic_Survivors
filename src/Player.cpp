@@ -25,3 +25,8 @@ Player::~Player()
 void Player::levelUp()
 {	
 }
+
+void Player::attack(sf::Vector2f direction)
+{
+	this->weapon.shoot(direction);
+}

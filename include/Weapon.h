@@ -2,11 +2,16 @@
 #ifndef _WEAPON_H
 #define _WEAPON_H
 
+#include "Bullet.h"
+
 class Weapon 
 {
 public:
+	Weapon();
+	~Weapon();
+
 	float calculateDamage();
-	void attack();
+	void shoot(sf::Vector2f direction);
 
 private:
 	float baseDamage;
@@ -14,6 +19,8 @@ private:
 	float criticalChance;
 	float criticalDamage;
 	float attackSpeed;
+
+	std::vector<Bullet*> bullets;
 
 };
 
