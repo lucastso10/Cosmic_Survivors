@@ -10,13 +10,15 @@ class Player : public Entity
 private:
 	int xp;
 	int level;
-	// Weapon weapon;
+	Weapon* weapon;
 
 public:
-	Player(std::string file, sf::Vector2f start_pos);
+	Player(std::string file, sf::Texture* bulletTexture, sf::Vector2f start_pos);
 	~Player();
 
 	void levelUp();
+	void attack(sf::Vector2f direction);
+	void drawBullets(sf::RenderWindow* render);
 };
 
 #endif
