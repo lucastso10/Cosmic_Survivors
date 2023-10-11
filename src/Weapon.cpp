@@ -1,6 +1,6 @@
 #include "Weapon.h"
 
-Weapon::Weapon()
+Weapon::Weapon(sf::Texture defaultBulletTexture)
 {
 	// esses status podem trocar dependendo do tipo de arma
 	// que o usuario escolher
@@ -10,7 +10,11 @@ Weapon::Weapon()
 	this->criticalDamage = 0;
 	this->attackSpeed = 0;
 
-    this->bullets.reserve(100);
+	this->defaultBulletTexture = defaultBulletTexture;
+
+    this->bullets.reserve(100); // não sei se isso é muito ou pouco
+	// provavelmente vai trocar
+	// essa parte talvez vale a pena ser dinamica
 }
 
 Weapon::~Weapon()
@@ -24,5 +28,5 @@ float Weapon::calculateDamage()
 
 void Weapon::shoot(sf::Vector2f direction)
 {
-
+	this->bullets.push_back(new Bullet())
 }

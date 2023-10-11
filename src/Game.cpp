@@ -37,22 +37,16 @@ void Game::movePlayer(sf::Vector2f dist)
 // todos o que vai ser desenhado na tela precisa acontecer aqui
 void Game::updateFrame()
 {
-	if(this->isInMenu())
-	{
-
-	}
-	else {
-		this->renderWindow->clear(sf::Color::Black);
-		this->renderWindow->draw(this->player->getSprite());
+	this->renderWindow->clear(sf::Color::Black);
+	this->renderWindow->draw(this->player->getSprite());
 		
-		if (!enemies.empty()) {
-			for (auto& enemy : this->enemies) {
-				this->renderWindow->draw(enemy->getSprite());
-				enemy->goToPlayer(this->player->getPos());
-			}
-			
+	if (!enemies.empty()) {
+		for (auto& enemy : this->enemies) {
+			this->renderWindow->draw(enemy->getSprite());
+			enemy->goToPlayer(this->player->getPos());
 		}
 	}
+
 	this->renderWindow->display();
 }
 
