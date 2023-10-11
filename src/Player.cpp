@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(std::string file, sf::Texture bulletTexture, sf::Vector2f start_pos)
+Player::Player(std::string file, sf::Texture* bulletTexture, sf::Vector2f start_pos)
 {
 	this->xp = 0;
 	this->level = 0;
@@ -33,5 +33,10 @@ void Player::levelUp()
 
 void Player::attack(sf::Vector2f direction)
 {
-	this->weapon.shoot(direction);
+	this->weapon->shoot(direction, this->getPos());
+}
+
+void Player::drawBullets(sf::RenderWindow* render)
+{
+	this->weapon->drawBullets(render);
 }

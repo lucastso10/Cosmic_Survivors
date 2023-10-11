@@ -1,6 +1,7 @@
 #include "Weapon.h"
+#include <iostream>
 
-Weapon::Weapon(sf::Texture defaultBulletTexture)
+Weapon::Weapon(sf::Texture* defaultBulletTexture)
 {
 	// esses status podem trocar dependendo do tipo de arma
 	// que o usuario escolher
@@ -26,7 +27,20 @@ float Weapon::calculateDamage()
     return 0.0f;
 }
 
-void Weapon::shoot(sf::Vector2f direction)
+void Weapon::shoot(sf::Vector2f direction, sf::Vector2f start_pos)
 {
-	this->bullets.push_back(new Bullet())
+	Bullet* b = new Bullet(0.0f, this->defaultBulletTexture, start_pos);
+	b->setDirection(direction);
+
+	this->bullets.push_back(b);
+}
+
+void Weapon::drawBullets(sf::RenderWindow* render)
+{
+	if (!bullets.empty()) {
+		for (auto& bullet : this->bullets) {
+			render->draw(bullet->getSprite());
+			bullet->moveDirection();
+		}
+	}
 }

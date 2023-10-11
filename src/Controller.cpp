@@ -73,6 +73,7 @@ void Controller::eventHandlerGame()
 					}
 				}
 				break;
+
 			// evento soltar tecla
 			case sf::Event::KeyReleased:
 				// faz a mesma coisa que o de cima só que marca false
@@ -83,6 +84,11 @@ void Controller::eventHandlerGame()
 					}
 				}
 			break;
+
+			case sf::Event::MouseButtonReleased:
+				this->game->PlayerAttack(sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
+				break;
+
 			// evento para fechar o jogo
 			case sf::Event::Closed:
 				this->game->quitGame();

@@ -24,6 +24,7 @@ public:
 	~Game();
 
 	void movePlayer(sf::Vector2f dist);
+	void PlayerAttack(sf::Vector2f direction);
 	bool getEvents(sf::Event &event);
 	sf::RenderWindow* getRenderWindow();
 	bool isInMenu();

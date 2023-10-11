@@ -7,11 +7,13 @@
 class Weapon 
 {
 public:
-	Weapon(sf::Texture defaultBulletTexture);
+	Weapon(sf::Texture* defaultBulletTexture);
 	~Weapon();
 
 	float calculateDamage();
-	void shoot(sf::Vector2f direction);
+	void shoot(sf::Vector2f direction, sf::Vector2f start_pos);
+
+	void drawBullets(sf::RenderWindow* render);
 
 private:
 	float baseDamage;
@@ -20,7 +22,7 @@ private:
 	float criticalDamage;
 	float attackSpeed;
 
-	sf::Texture defaultBulletTexture;
+	sf::Texture* defaultBulletTexture;
 	std::vector<Bullet*> bullets;
 
 };
