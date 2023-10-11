@@ -25,8 +25,6 @@ public:
 
 	void setTexture(sf::Texture* texture);
 
-	void setStationary(bool stat);
-
 	bool isOnScreen();
 	void move(sf::Vector2f direction);
 	void onDeath();
