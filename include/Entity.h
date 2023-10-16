@@ -18,7 +18,7 @@ private:
 public:
 
 	void setPos(sf::Vector2f pos);
-	sf::Vector2f getPos();
+	sf::Vector2f getPos(); // alterei para retornar o centro da sprite
 
 	void setSprite(sf::Sprite sprite);
 	sf::Sprite getSprite();
