@@ -13,8 +13,9 @@ void Entity::setPos(sf::Vector2f pos)
 sf::Vector2f Entity::getPos()
 {
 	sf::Vector2f center(
-		(sprite.getTexture()->getSize().x * sprite.getScale().x) / 2,
-		(sprite.getTexture()->getSize().y * sprite.getScale().y) / 2);
+		(sprite.getTexture()->getSize().x * sprite.getScale().x) / 2.0f,
+		(sprite.getTexture()->getSize().y * sprite.getScale().y) / 2.0f
+	);
 	
 	return sprite.getPosition() + center;
 }
