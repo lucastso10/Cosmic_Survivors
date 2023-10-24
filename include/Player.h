@@ -19,6 +19,7 @@ public:
 	void levelUp();
 	void attack(sf::Vector2f direction);
 	void drawBullets(sf::RenderWindow* render);
+	bool checkAttackTimer(sf::Clock* attackTimer);
 };
 
 #endif
