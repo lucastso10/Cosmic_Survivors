@@ -18,6 +18,9 @@ private:
 	bool inMenu; // Checa se está em algum menu
 	//int spawnEnemyTimer;
 
+	sf::Clock* attackTimer;
+	sf::Mouse mouse;
+
 public:
 
 	Game(sf::RenderWindow* window);

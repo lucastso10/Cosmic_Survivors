@@ -14,9 +14,13 @@ protected:
 	float speed = 0.0;
 	sf::Texture* texture;
 	sf::Sprite sprite;
+	sf::IntRect spriteTextureRect;
+
 	
 
 public:
+
+	int animationFrameCount;
 
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos();
@@ -27,6 +31,9 @@ public:
 
 	void setStationary(bool stat);
 
+
+	void setTextureSpriteRect(sf::IntRect rect);
+	sf::IntRect getTextureSpriteRect();
 
 	bool isOnScreen();
 	void move(sf::Vector2f direction);

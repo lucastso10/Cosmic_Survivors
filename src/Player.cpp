@@ -41,6 +41,12 @@ void Player::drawBullets(sf::RenderWindow* render)
 	this->weapon->drawBullets(render);
 }
 
+bool Player::checkAttackTimer(sf::Clock* attackTimer)
+{
+	return this->weapon->checkAttackTimer(attackTimer);
+}
+}
+
 void Player::iniFont()
 {
 }
