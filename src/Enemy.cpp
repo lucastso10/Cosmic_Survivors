@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include <math.h>
 
 Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	this->dano = 0.0;

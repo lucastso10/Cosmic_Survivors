@@ -20,17 +20,20 @@ public:
 
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos();
+
 	void setSprite(sf::Sprite sprite);
 	sf::Sprite getSprite();
 	void setTexture(sf::Texture* texture);
+
+	void setStationary(bool stat);
+
+
 	bool isOnScreen();
 	void move(sf::Vector2f direction);
 	void onDeath();
 	bool isDead();
-	sf::FloatRect getBounds(sf::Sprite sprite);
+	//sf::FloatRect getBounds(sf::Sprite sprite);
 
-
-	void initFont();
 
 };
 

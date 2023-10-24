@@ -12,7 +12,12 @@ void Entity::setPos(sf::Vector2f pos)
 
 sf::Vector2f Entity::getPos()
 {
-	return this->sprite.getPosition();
+	sf::Vector2f center(
+		(sprite.getTexture()->getSize().x * sprite.getScale().x) / 2.0f,
+		(sprite.getTexture()->getSize().y * sprite.getScale().y) / 2.0f
+	);
+	
+	return sprite.getPosition() + center;
 }
 
 void Entity::setSprite(sf::Sprite sprite)
@@ -30,12 +35,16 @@ void Entity::setTexture(sf::Texture* texture)
 	this->texture = texture;
 }
 
+void Entity::setStationary(bool stat)
+{
+}
+
 void Entity::move(sf::Vector2f direction)
 {
 	this->sprite.move(direction);
 }
 
-void Entity::onDeath()
+void Entity::onDeath() // isso pode ser especifico de cada tipo de entidade
 {
 }
 

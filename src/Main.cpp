@@ -8,29 +8,27 @@
 #include "Menu.h"
 
 int main() {
-	// a resolução pode ser dinamica no futuro!
-	sf::RenderWindow window(sf::VideoMode(1360, 750), "Wipe Out!");
+  // a resolução pode ser dinamica no futuro!
+  sf::RenderWindow window(sf::VideoMode(1360, 750), "Wipe Out!");
 
-	Game game(&window);
-	Menu menu(&game);
+  Game game(&window);
+  Menu menu(&game);
 
-	Controller controller(&game, &menu);
+  Controller controller(&game, &menu);
 
+  
 
+  // main loop do game!
+  while (game.isRunning()) {
 
-	// main loop do game!
-	//menu.run_menu();
+    controller.eventHandler();
 
-	while (game.isRunning()) {
-
-		controller.eventHandler();
-
-		if (game.isInMenu()) {
-			menu.run_menu();
-		}
-		else {
-			game.updateFrame();
-		}
-	}
-	return 0;
+    if (game.isInMenu()) { // esse if pode ir dentro de updateFrame
+        menu.run_menu();
+    }
+    else{
+	game.updateFrame();
+    }
+  }
+  return 0;
 }
