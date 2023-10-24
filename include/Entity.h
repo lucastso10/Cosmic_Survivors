@@ -30,6 +30,8 @@ public:
 	sf::FloatRect getBounds(sf::Sprite sprite);
 
 
+	void initFont();
+
 };
 
 #endif

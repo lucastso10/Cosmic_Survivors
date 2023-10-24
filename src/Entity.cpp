@@ -39,12 +39,8 @@ void Entity::onDeath()
 {
 }
 
+
 bool Entity::isDead()
 {
 	return this->health <= 0;
-}
-
-sf::FloatRect Entity::getBounds(sf::Sprite sprite)
-{
-	return sprite.getGlobalBounds();
 }
