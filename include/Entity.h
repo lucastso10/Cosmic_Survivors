@@ -35,6 +35,8 @@ public:
 	void setTextureSpriteRect(sf::IntRect rect);
 	sf::IntRect getTextureSpriteRect();
 
+	void adjustOrigin();
+
 	bool isOnScreen();
 	void move(sf::Vector2f direction);
 	void onDeath();

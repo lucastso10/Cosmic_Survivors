@@ -24,6 +24,7 @@ Player::Player(std::string file, sf::Texture* bulletTexture, sf::Vector2f start_
 	this->setTexture(texture);
 	this->setSprite(sprite);
 	this->setPos(start_pos);
+	this->adjustOrigin();
 	
 }
 

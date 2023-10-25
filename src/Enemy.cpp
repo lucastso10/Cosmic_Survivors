@@ -17,6 +17,7 @@ Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	this->setTexture(enemyTexture);
 	this->setSprite(enemySprite);
 	this->setPos(pos);
+	this->adjustOrigin();
 }
 
 Enemy::~Enemy() {
