@@ -2,7 +2,10 @@
 #include <math.h>
 
 Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
-	this->dano = 0.0;
+	this->dano = 0.001;
+	this->armor = 0.0;
+	this->health = 3.0;
+	this->speed = 25.0f;
 	this->Pos = pos;
 
 	sf::Texture* enemyTexture = new sf::Texture;
@@ -21,8 +24,9 @@ Enemy::~Enemy() {
 
 }
 
-void Enemy::attack()
+void Enemy::attack(Player* player)
 {
+	player->setHealth(player->getHealth() - this->dano);
 }
 
 void Enemy::goToPlayer(sf::Vector2f currentPlayerPos)
@@ -32,6 +36,6 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos)
 	float distanceToPlayer = sqrt(enemyToPlayer.x * enemyToPlayer.x + enemyToPlayer.y * enemyToPlayer.y);
 	
 	sf::Vector2f movementDirection = enemyToPlayer / distanceToPlayer;
-	this->move(movementDirection/25.0f);
-
+	this->move(movementDirection/this->speed);
+	
 }

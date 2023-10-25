@@ -13,7 +13,7 @@ private:
 	Weapon* weapon;
 
 public:
-	Player(std::string file, sf::Texture* bulletTexture, sf::Vector2f start_pos);
+	Player(std::string file, sf::Texture* bulletTexture,sf::Vector2f start_pos);
 	~Player();
 
 	void levelUp();

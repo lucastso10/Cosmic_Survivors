@@ -4,7 +4,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 {
 	// esses status podem trocar dependendo do tipo de arma
 	// que o usuario escolher
-	this->baseDamage = 0;
+	this->baseDamage = 1.0;
 	this->armorPenetration = 0;
 	this->criticalChance = 0;
 	this->criticalDamage = 0;
@@ -38,8 +38,8 @@ void Weapon::drawBullets(sf::RenderWindow* render)
 {
 	if (!bullets.empty()) {
 		for (auto& bullet : this->bullets) {
-			render->draw(bullet->getSprite());
 			bullet->moveDirection();
+			render->draw(bullet->getSprite());
 		}
 	}
 }
