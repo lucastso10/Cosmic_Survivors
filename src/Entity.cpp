@@ -12,12 +12,7 @@ void Entity::setPos(sf::Vector2f pos)
 
 sf::Vector2f Entity::getPos()
 {
-	sf::Vector2f center(
-		(sprite.getTexture()->getSize().x * sprite.getScale().x) / 2.0f,
-		(sprite.getTexture()->getSize().y * sprite.getScale().y) / 2.0f
-	);
-	
-	return sprite.getPosition() + center;
+	return sprite.getPosition();
 }
 
 void Entity::setSprite(sf::Sprite sprite)
@@ -43,6 +38,11 @@ void Entity::setTextureSpriteRect(sf::IntRect rect)
 sf::IntRect Entity::getTextureSpriteRect()
 {
 	return this->sprite.getTextureRect();
+}
+
+void Entity::adjustOrigin()
+{
+	this->sprite.setOrigin((this->sprite.getLocalBounds().getSize() / 2.0f));
 }
 
 void Entity::move(sf::Vector2f direction)
