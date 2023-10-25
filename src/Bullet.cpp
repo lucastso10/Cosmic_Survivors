@@ -1,8 +1,7 @@
 #include "Bullet.h"
 
-Bullet::Bullet(float dano, sf::Texture* texture, sf::Vector2f start_pos)
+Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 {
-	this->dano = dano;
 	this->animationFrameCount = 0;
 
 	// A extura da arma pode ser só uma que é 

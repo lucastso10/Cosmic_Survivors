@@ -8,13 +8,16 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Hud.h"
+#include "Weapon.h"
 
 class Game
 {
 private:
 	sf::RenderWindow* renderWindow;
 	Player* player;
+	Weapon* weapon;
 	std::vector<Enemy*> enemies;
+	std::vector<Bullet*> bullets;
 	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
 	bool inMenu; // Checa se está em algum menu
 	//int spawnEnemyTimer;
@@ -22,6 +25,7 @@ private:
 	sf::Clock* attackTimer;
 	sf::Mouse mouse;
 	Hud* hud;
+
 
 public:
 
