@@ -1,4 +1,5 @@
 #include "Menu.h"
+using namespace std;
 
 Menu::Menu(Game *game) {
 	winclose = new sf::RectangleShape();
@@ -24,13 +25,26 @@ void Menu::set_values() {
 	image->loadFromFile("../images/telaprimeiradef.jpg");
 	
 	bg->setTexture(*image);
-
-	options = { "Wipe Out", "Jogar", "Fechar" };
+	options = { "Wipe Out", "Jogar", "Opções", "Fechar" };
+	texts.resize(4);
+	coords = {{200,-80},{610,435},{620,595},{620,660}};
+	sizes = {400,100,60,60};
+	for (size_t i{}; i < texts.size(); ++i) {
+		texts[i].setFont(*font);
+		texts[i].setString(options[i]);
+		texts[i].setCharacterSize(sizes[i]);
+		texts[i].setOutlineColor(sf::Color::Black);
+		texts[i].setColor(sf::Color::Black);
+		texts[i].setPosition(coords[i]);
+	}
 }
 
 void Menu::draw_all() {
 	game->getRenderWindow()->clear(sf::Color::Black);
 	game->getRenderWindow()->draw(*bg);
+	for (auto t : texts) {
+		game->getRenderWindow()->draw(t);
+	}
 	game->getRenderWindow()->display();
 }
 
