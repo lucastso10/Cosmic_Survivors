@@ -1,7 +1,11 @@
 #include "Player.h"
-
+#include <iostream>
 Player::Player(std::string file, sf::Texture* bulletTexture, sf::Vector2f start_pos)
 {
+	this->setHealth(100);
+	this->setArmor(20);
+	this->setSpeed(2);
+
 	this->xp = 0;
 	this->level = 0;
 	this->weapon = new Weapon(bulletTexture); // solução temporaria
@@ -44,35 +48,4 @@ void Player::drawBullets(sf::RenderWindow* render)
 bool Player::checkAttackTimer(sf::Clock* attackTimer)
 {
 	return this->weapon->checkAttackTimer(attackTimer);
-}
-}
-
-void Player::iniFont()
-{
-}
-
-void Player::initHpBar()
-{
-	this->hpBar.setSize(sf::Vector2f(250.f, 25.f));
-	this->hpBar.setFillColor(sf::Color(50, 50, 50, 200));
-	this->hpBar.setPosition(sf::Vector2f(10.f, 10.f));
-
-	this->hpBarInside.setSize(sf::Vector2f(250.f, 25.f));
-	this->hpBarInside.setFillColor(sf::Color(250, 20, 20, 200));
-	this->hpBarInside.setPosition(this->hpBar.getPosition());
-}
-
-void Player::updateHpBar()
-{
-}
-
-void Player::renderHpBar(sf::RenderTarget &target)
-{
-	target.draw(this->hpBar);
-	target.draw(this->hpBarInside);
-}
-
-void Player::render(sf::RenderWindow* window) {
-	this->initHpBar();
-	this->renderHpBar(*window);
 }

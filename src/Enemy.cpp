@@ -2,9 +2,9 @@
 #include <math.h>
 
 Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
-	this->dano = 0.0;
+	this->dano = 0.001;
 	this->armor = 0.0;
-	this->health = 10.0;
+	this->health = 3.0;
 	this->speed = 25.0f;
 	this->Pos = pos;
 
@@ -23,9 +23,9 @@ Enemy::~Enemy() {
 
 }
 
-void Enemy::attack()
+void Enemy::attack(Player* player)
 {
-	
+	player->setHealth(player->getHealth() - this->dano);
 }
 
 void Enemy::goToPlayer(sf::Vector2f currentPlayerPos)

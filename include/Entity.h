@@ -41,6 +41,13 @@ public:
 	bool isDead();
 	//sf::FloatRect getBounds(sf::Sprite sprite);
 
+	float getHealth();
+	float getArmor();
+	float getSpeed();
+
+	void setHealth(float health);
+	void setArmor(float armor);
+	void setSpeed(float Speed);
 
 };
 

@@ -63,3 +63,27 @@ bool Entity::isDead()
 {
 	return this->health <= 0;
 }
+
+float Entity::getHealth() {
+	return this->health;
+}
+
+float Entity::getArmor() {
+	return this->armor;
+}
+
+float Entity::getSpeed() {
+	return this->speed;
+}
+
+void Entity::setHealth(float health) {
+	this->health = health;
+}
+
+void Entity::setArmor(float armor) {
+	this->armor = armor;
+}
+
+void Entity::setSpeed(float speed) {
+	this->speed = speed;
+}
