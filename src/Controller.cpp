@@ -35,6 +35,9 @@ void Controller::eventHandlerMenu() {
 					if (event.mouseButton.x >= 530 && event.mouseButton.x <= 828 && event.mouseButton.y >= 480 && event.mouseButton.y <= 544) {
 						menu->startgame_button();
 					}
+					if (event.mouseButton.x >= 602 && event.mouseButton.x <= 757 && event.mouseButton.y >= 689 && event.mouseButton.y <= 721) {
+						this->game->quitGame();
+					}
 				}
 				break;
 		
