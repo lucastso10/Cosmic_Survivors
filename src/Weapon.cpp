@@ -28,7 +28,7 @@ float Weapon::calculateDamage()
 
 void Weapon::shoot(sf::Vector2f direction, sf::Vector2f start_pos)
 {
-	Bullet* b = new Bullet(0.0f, this->defaultBulletTexture, start_pos);
+	Bullet* b = new Bullet(this->defaultBulletTexture, start_pos);
 	b->setDirection(direction);
 
 	this->bullets.push_back(b);

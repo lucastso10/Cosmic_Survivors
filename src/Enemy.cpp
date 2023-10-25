@@ -21,7 +21,7 @@ Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 }
 
 Enemy::~Enemy() {
-
+	
 }
 
 void Enemy::attack(Player* player)

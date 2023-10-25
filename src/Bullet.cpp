@@ -1,8 +1,7 @@
 #include "Bullet.h"
 
-Bullet::Bullet(float dano, sf::Texture* texture, sf::Vector2f start_pos)
+Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 {
-	this->dano = dano;
 	this->animationFrameCount = 0;
 
 	// A extura da arma pode ser só uma que é 
@@ -22,6 +21,16 @@ Bullet::Bullet(float dano, sf::Texture* texture, sf::Vector2f start_pos)
 Bullet::~Bullet()
 {
 	delete this;
+}
+
+void Bullet::checarHit(Enemy* enemy)
+{
+	if (this->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
+		enemy->setHealth(enemy->getHealth() - this->damage);
+		if (enemy->isDead()) {
+			enemy->getHealth();
+		}
+	}
 }
 
 void Bullet::setDirection(sf::Vector2f ref_pos)

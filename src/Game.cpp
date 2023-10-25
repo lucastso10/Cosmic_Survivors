@@ -59,7 +59,6 @@ void Game::updateFrame()
 				if (enemy->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
 					enemy->attack(this->player);
 				}
-
 				this->renderWindow->draw(enemy->getSprite());
 			}
 		}
@@ -69,7 +68,6 @@ void Game::updateFrame()
 		if (player->isDead()) {
 			this->quitGame();
 		}
-
 		this->renderWindow->display();
 }
 
