@@ -23,15 +23,7 @@ Bullet::~Bullet()
 	delete this;
 }
 
-void Bullet::checarHit(Enemy* enemy)
-{
-	if (this->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
-		enemy->setHealth(enemy->getHealth() - this->damage);
-		if (enemy->isDead()) {
-			enemy->getHealth();
-		}
-	}
-}
+
 
 void Bullet::setDirection(sf::Vector2f ref_pos)
 {

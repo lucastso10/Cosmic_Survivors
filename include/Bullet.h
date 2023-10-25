@@ -2,7 +2,7 @@
 #define _BULLET_H
 
 #include "Entity.h"
-#include "Enemy.h"
+
 
 class Bullet : public Entity
 {
@@ -13,7 +13,7 @@ public:
 	Bullet(sf::Texture* texture, sf::Vector2f start_pos);
 	~Bullet();
 
-	void checarHit(Enemy* enemy);
+	void checarHit();
 	void setDirection(sf::Vector2f ref_pos);
 	void moveDirection();
 };
