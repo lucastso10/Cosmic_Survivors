@@ -35,6 +35,16 @@ void Entity::setTexture(sf::Texture* texture)
 	this->texture = texture;
 }
 
+void Entity::setTextureSpriteRect(sf::IntRect rect)
+{
+	this->sprite.setTextureRect(rect);
+}
+
+sf::IntRect Entity::getTextureSpriteRect()
+{
+	return this->sprite.getTextureRect();
+}
+
 void Entity::move(sf::Vector2f direction)
 {
 	this->sprite.move(direction);

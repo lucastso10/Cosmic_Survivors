@@ -14,8 +14,11 @@ private:
 	float speed;
 	sf::Texture* texture;
 	sf::Sprite sprite;
+	sf::IntRect spriteTextureRect;
 
 public:
+
+	int animationFrameCount;
 
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos(); // alterei para retornar o centro da sprite
@@ -24,6 +27,9 @@ public:
 	sf::Sprite getSprite();
 
 	void setTexture(sf::Texture* texture);
+
+	void setTextureSpriteRect(sf::IntRect rect);
+	sf::IntRect getTextureSpriteRect();
 
 	bool isOnScreen();
 	void move(sf::Vector2f direction);

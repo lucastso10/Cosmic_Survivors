@@ -1,5 +1,4 @@
 #include "Weapon.h"
-#include <iostream>
 
 Weapon::Weapon(sf::Texture* defaultBulletTexture)
 {
@@ -9,7 +8,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 	this->armorPenetration = 0;
 	this->criticalChance = 0;
 	this->criticalDamage = 0;
-	this->attackSpeed = 0;
+	this->attackSpeed = sf::seconds(1.0f);
 
 	this->defaultBulletTexture = defaultBulletTexture;
 
@@ -42,5 +41,16 @@ void Weapon::drawBullets(sf::RenderWindow* render)
 			render->draw(bullet->getSprite());
 			bullet->moveDirection();
 		}
+	}
+}
+
+bool Weapon::checkAttackTimer(sf::Clock* attackTimer)
+{
+	if (attackTimer->getElapsedTime() >= this->attackSpeed) {
+		attackTimer->restart();
+		return true;
+	}
+	else {
+		return false;
 	}
 }

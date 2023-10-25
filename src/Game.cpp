@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 Game::Game(sf::RenderWindow* window)
 {
@@ -7,6 +8,7 @@ Game::Game(sf::RenderWindow* window)
 	this->running = true;
 	this->inMenu = true;
 	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
+	this->attackTimer = new sf::Clock;
 	
 }
 
@@ -42,6 +44,10 @@ void Game::PlayerAttack(sf::Vector2f direction)
 // todos o que vai ser desenhado na tela precisa acontecer aqui
 void Game::updateFrame()
 {
+	if (this->player->checkAttackTimer(this->attackTimer)) {
+		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
+	}
+
 	this->renderWindow->clear(sf::Color::Black);
 	this->renderWindow->draw(this->player->getSprite());
 	this->player->drawBullets(this->renderWindow);
@@ -70,7 +76,8 @@ void Game::startGame()
 		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i*15,i*10));
 		enemies.push_back(e);
 	}
-	
+
+	this->attackTimer->restart();
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?
