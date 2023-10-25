@@ -34,7 +34,8 @@ void Menu::set_values() {
 		texts[i].setString(options[i]);
 		texts[i].setCharacterSize(sizes[i]);
 		texts[i].setOutlineColor(sf::Color::Black);
-		texts[i].setColor(sf::Color::Black);
+		if (i == 0) { texts[i].setColor(sf::Color::White); }
+		else { texts[i].setColor(sf::Color::Black); }
 		texts[i].setPosition(coords[i]);
 	}
 }
