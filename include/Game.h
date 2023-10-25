@@ -7,6 +7,7 @@
 
 #include "Enemy.h"
 #include "Player.h"
+#include "Hud.h"
 
 class Game
 {
@@ -17,6 +18,10 @@ private:
 	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
 	bool inMenu; // Checa se está em algum menu
 	//int spawnEnemyTimer;
+
+	sf::Clock* attackTimer;
+	sf::Mouse mouse;
+	Hud* hud;
 
 public:
 

@@ -15,12 +15,14 @@ public:
 
 	void drawBullets(sf::RenderWindow* render);
 
+	bool checkAttackTimer(sf::Clock* attackTimer);
+
 private:
 	float baseDamage;
 	float armorPenetration;
 	float criticalChance;
 	float criticalDamage;
-	float attackSpeed;
+	sf::Time attackSpeed;
 
 	sf::Texture* defaultBulletTexture;
 	std::vector<Bullet*> bullets;
