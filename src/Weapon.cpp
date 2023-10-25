@@ -12,9 +12,6 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 
 	this->defaultBulletTexture = defaultBulletTexture;
 
-    this->bullets.reserve(100); // não sei se isso é muito ou pouco
-	// provavelmente vai trocar
-	// essa parte talvez vale a pena ser dinamica
 }
 
 Weapon::~Weapon()
@@ -26,24 +23,6 @@ float Weapon::calculateDamage()
     return 0.0f;
 }
 
-void Weapon::shoot(sf::Vector2f direction, sf::Vector2f start_pos)
-{
-	Bullet* b = new Bullet(this->defaultBulletTexture, start_pos);
-	b->setDirection(direction);
-
-	this->bullets.push_back(b);
-}
-
-void Weapon::drawBullets(sf::RenderWindow* render)
-{
-	if (!bullets.empty()) {
-		for (auto& bullet : this->bullets) {
-			bullet->moveDirection();
-			render->draw(bullet->getSprite());
-		}
-	}
-}
-
 bool Weapon::checkAttackTimer(sf::Clock* attackTimer)
 {
 	if (attackTimer->getElapsedTime() >= this->attackSpeed) {
@@ -53,4 +32,9 @@ bool Weapon::checkAttackTimer(sf::Clock* attackTimer)
 	else {
 		return false;
 	}
+}
+
+sf::Texture* Weapon::getBulletTexture() 
+{
+	return this->defaultBulletTexture;
 }

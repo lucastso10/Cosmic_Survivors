@@ -4,7 +4,7 @@
 Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	this->dano = 0.001;
 	this->armor = 0.0;
-	this->health = 3.0;
+	this->health = 15.0;
 	this->speed = 25.0f;
 	this->Pos = pos;
 

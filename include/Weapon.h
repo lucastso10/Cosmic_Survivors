@@ -11,11 +11,10 @@ public:
 	~Weapon();
 
 	float calculateDamage();
-	void shoot(sf::Vector2f direction, sf::Vector2f start_pos);
-
-	void drawBullets(sf::RenderWindow* render);
 
 	bool checkAttackTimer(sf::Clock* attackTimer);
+
+	sf::Texture* getBulletTexture();
 
 private:
 	float baseDamage;
@@ -25,7 +24,7 @@ private:
 	sf::Time attackSpeed;
 
 	sf::Texture* defaultBulletTexture;
-	std::vector<Bullet*> bullets;
+	
 
 };
 

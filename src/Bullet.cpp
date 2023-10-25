@@ -23,8 +23,6 @@ Bullet::~Bullet()
 	delete this;
 }
 
-
-
 void Bullet::setDirection(sf::Vector2f ref_pos)
 {
 	sf::Vector2f enemyToPlayer = ref_pos - this->getPos();
