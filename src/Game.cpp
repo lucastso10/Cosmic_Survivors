@@ -68,7 +68,7 @@ void Game::startGame()
 	this->inMenu = false;
 	sf::Texture* bullet = new sf::Texture;
 	bullet->loadFromFile("../images/Bullet/Simple_Bullet.png");
-	Player* p = new Player("../images/Player/move.png", bullet, sf::Vector2f(200.0f, 150.0f));
+	Player* p = new Player("../images/Player/move.png", bullet, sf::Vector2f(0, 0));
 	this->player = p;
 	
 
