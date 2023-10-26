@@ -33,9 +33,9 @@ bool Game::isInMenu()
 	return this->inMenu;
 }
 
-void Game::movePlayer(sf::Vector2f dist)
+Player* Game::getPlayer()
 {
-	return this->player->move(dist);
+	return this->player;
 }
 
 void Game::PlayerAttack(sf::Vector2f direction)
@@ -53,13 +53,21 @@ void Game::updateFrame()
 
 	this->renderWindow->clear(sf::Color::Black);
 
+	// animação do player
+	this->player->animate();
+
+	// dependendo da posição do mouse a sprite inverte
+	if (this->player->getSprite().getScale().x > 0 && this->mouse.getPosition(*(this->renderWindow)).x < this->player->getPos().x)
+		this->player->flip();
+	else if (this->player->getSprite().getScale().x < 0 && this->mouse.getPosition(*(this->renderWindow)).x > this->player->getPos().x)
+		this->player->flip();
+
 	// desenha o player
 	this->renderWindow->draw(this->player->getSprite());
 
 	// verifica se o player atira nesse frame se sim já aloca um nova instância no vetor
-	if (this->weapon->checkAttackTimer(this->attackTimer)) {
+	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
-	}
 
 	// desenha os tiros na tela
 	if (!bullets.empty()) {
@@ -68,7 +76,7 @@ void Game::updateFrame()
 			// verifica se o tiro acertou algum inimigo
 			for (auto& enemy : this->enemies) {
 				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
-					enemy->setHealth(enemy->getHealth() - 0.001f);
+					enemy->setHealth(enemy->getHealth() - 0.001f); // seria bom uma função para diminuir a vida de uma entidade
 				}
 			}
 
@@ -115,10 +123,10 @@ void Game::startGame()
 	this->player = p;
 
 
-	for (int i = 0; i < 5; i++) {
-		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 15, i * 10));
-		enemies.push_back(e);
-	}
+	//for (int i = 0; i < 5; i++) {
+	//	Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 15, i * 10));
+	//	enemies.push_back(e);
+	//}
 
 	// o tipo de bala provavelmente vai trocar com o tipo de arma no futuro
 	sf::Texture* bullet = new sf::Texture;

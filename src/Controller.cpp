@@ -97,18 +97,35 @@ void Controller::eventHandlerGame()
 		}
 	}
 
+	bool moved = false;
+	Player* player = this->game->getPlayer();
 	// tratando as flags, talvez tenha um melho jeito de fazer isso
-	if (this->flags[sf::Keyboard::D])
-		this->game->movePlayer(sf::Vector2f(0.1f, 0.0f));
+	if (this->flags[sf::Keyboard::D]) {
+		player->move(sf::Vector2f(0.1f, 0.0f)); // precisa de alteração para a velocidade do player mudar
+		player->setWalking(true);
+		moved = true;
+	}
 
-	if (this->flags[sf::Keyboard::A])
-		this->game->movePlayer(sf::Vector2f(-0.1f, 0.0f));
+	if (this->flags[sf::Keyboard::A]) {
+		player->move(sf::Vector2f(-0.1f, 0.0f));
+		player->setWalking(true);
+		moved = true;
+	}
 
-	if (this->flags[sf::Keyboard::W])
-		this->game->movePlayer(sf::Vector2f(0.0f, -0.1f));
+	if (this->flags[sf::Keyboard::W]) {
+		player->move(sf::Vector2f(0.0f, -0.1f));
+		player->setWalking(true);
+		moved = true;
+	}
 
-	if (this->flags[sf::Keyboard::S])
-		this->game->movePlayer(sf::Vector2f(0.0f, 0.1f));
+	if (this->flags[sf::Keyboard::S]) {
+		player->move(sf::Vector2f(0.0f, 0.1f));
+		player->setWalking(true);
+		moved = true;
+	}
+
+	if (moved == false)
+		player->setWalking(false);
 }
 
 void Controller::interpretKey()

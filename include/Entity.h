@@ -20,7 +20,7 @@ protected:
 
 public:
 
-	int animationFrameCount;
+	sf::Clock animationClock;
 
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos();
@@ -50,6 +50,10 @@ public:
 	void setHealth(float health);
 	void setArmor(float armor);
 	void setSpeed(float Speed);
+
+	void setScale(sf::Vector2f scale);
+
+	void flip();
 
 };
 
