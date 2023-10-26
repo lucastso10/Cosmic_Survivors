@@ -33,9 +33,9 @@ bool Game::isInMenu()
 	return this->inMenu;
 }
 
-void Game::movePlayer(sf::Vector2f dist)
+Player* Game::getPlayer()
 {
-	return this->player->move(dist);
+	return this->player;
 }
 
 void Game::PlayerAttack(sf::Vector2f direction)

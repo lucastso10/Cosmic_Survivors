@@ -12,10 +12,16 @@ private:
 	int level;
 	Weapon* weapon;
 
+	bool isWalking;
+
 
 public:
 	Player(std::string file, sf::Vector2f start_pos);
 	~Player();
+
+	void setWalking(bool moving);
+
+	void animate();
 
 	void levelUp();
 	

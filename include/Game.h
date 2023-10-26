@@ -32,7 +32,7 @@ public:
 	Game(sf::RenderWindow* window);
 	~Game();
 
-	void movePlayer(sf::Vector2f dist);
+	Player* getPlayer();
 	void PlayerAttack(sf::Vector2f direction);
 	bool getEvents(sf::Event &event);
 	sf::RenderWindow* getRenderWindow();
