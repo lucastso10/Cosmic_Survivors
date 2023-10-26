@@ -21,7 +21,6 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 
 Bullet::~Bullet()
 {
-	delete this;
 }
 
 void Bullet::setDirection(sf::Vector2f ref_pos)
@@ -38,7 +37,7 @@ void Bullet::moveDirection()
 	sf::IntRect newRect = this->getTextureSpriteRect();
 
 	if (this->animationClock.getElapsedTime() >= sf::milliseconds(150)) {
-		if (newRect.left == 48)
+		if (newRect.left == 48 )
 			newRect.left = 0;
 		else
 			newRect.left += 16;

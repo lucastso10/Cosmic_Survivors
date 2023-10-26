@@ -71,6 +71,8 @@ void Game::updateFrame()
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 
+	std::cout << this->player->isOnScreen(this->renderWindow) << "\n";
+
 
 	// ================== Bullets ================================
 
@@ -78,6 +80,7 @@ void Game::updateFrame()
 	if (!bullets.empty()) {
 		for (auto& bullet : this->bullets) {
 			bullet->moveDirection();
+				
 			// verifica se o tiro acertou algum inimigo
 			for (auto& enemy : this->enemies) {
 				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {

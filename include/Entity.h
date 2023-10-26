@@ -22,6 +22,8 @@ public:
 
 	sf::Clock animationClock;
 
+	~Entity();
+
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos();
 
@@ -37,7 +39,7 @@ public:
 
 	void adjustOrigin();
 
-	bool isOnScreen();
+	bool isOnScreen(const sf::RenderWindow* screen);
 	void move(sf::Vector2f direction);
 	void onDeath();
 	bool isDead();
