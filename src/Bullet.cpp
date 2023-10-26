@@ -2,7 +2,7 @@
 
 Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 {
-	this->animationFrameCount = 0;
+	this->animationClock.restart();
 
 	// A extura da arma pode ser só uma que é 
 	// carregada várias vezes por várias instacias 
@@ -37,14 +37,13 @@ void Bullet::moveDirection()
 {
 	sf::IntRect newRect = this->getTextureSpriteRect();
 
-	if (this->animationFrameCount >= 200) {
-		if (newRect.left == 64)
+	if (this->animationClock.getElapsedTime() >= sf::milliseconds(150)) {
+		if (newRect.left == 48)
 			newRect.left = 0;
 		else
 			newRect.left += 16;
-		this->animationFrameCount = 0;
+		this->animationClock.restart();
 	}
-	this->animationFrameCount++;
 
 	this->setTextureSpriteRect(newRect);
 	this->move(this->direction);

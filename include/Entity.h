@@ -20,7 +20,7 @@ protected:
 
 public:
 
-	int animationFrameCount;
+	sf::Clock animationClock;
 
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos();
