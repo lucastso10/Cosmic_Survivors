@@ -51,6 +51,8 @@ public:
 	void setArmor(float armor);
 	void setSpeed(float Speed);
 
+	void setScale(sf::Vector2f scale);
+
 };
 
 #endif

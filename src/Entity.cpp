@@ -76,14 +76,22 @@ float Entity::getSpeed() {
 	return this->speed;
 }
 
-void Entity::setHealth(float health) {
+void Entity::setHealth(float health) 
+{
 	this->health = health;
 }
 
-void Entity::setArmor(float armor) {
+void Entity::setArmor(float armor) 
+{
 	this->armor = armor;
 }
 
-void Entity::setSpeed(float speed) {
+void Entity::setSpeed(float speed) 
+{
 	this->speed = speed;
+}
+
+void Entity::setScale(sf::Vector2f scale)
+{
+	this->sprite.setScale(scale);
 }

@@ -68,7 +68,7 @@ void Game::updateFrame()
 			// verifica se o tiro acertou algum inimigo
 			for (auto& enemy : this->enemies) {
 				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
-					enemy->setHealth(enemy->getHealth() - 0.001f);
+					enemy->setHealth(enemy->getHealth() - 0.001f); // seria bom uma função para diminuir a vida de uma entidade
 				}
 			}
 

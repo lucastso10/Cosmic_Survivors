@@ -15,6 +15,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 	this->setSprite(sprite);
 	this->setPos(start_pos);
 	this->setTextureSpriteRect(sf::IntRect(0, 0, 16, 16)); // assume que utiliza uma textura 16x16 do pacote de textura all fire bullet pixels
+	this->setScale(sf::Vector2f(2, 2));
 	this->adjustOrigin();
 }
 
@@ -36,7 +37,7 @@ void Bullet::moveDirection()
 {
 	sf::IntRect newRect = this->getTextureSpriteRect();
 
-	if (this->animationFrameCount >= 5) {
+	if (this->animationFrameCount >= 200) {
 		if (newRect.left == 64)
 			newRect.left = 0;
 		else
