@@ -51,32 +51,44 @@ void Game::PlayerAttack(sf::Vector2f direction)
 void Game::updateFrame()
 {
 
+	this->renderWindow->clear(sf::Color::Black);
+
+	// desenha o player
+	this->renderWindow->draw(this->player->getSprite());
+
+	// verifica se o player atira nesse frame se sim já aloca um nova instância no vetor
 	if (this->weapon->checkAttackTimer(this->attackTimer)) {
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 	}
 
-	this->renderWindow->clear(sf::Color::Black);
-	this->renderWindow->draw(this->player->getSprite());
-
+	// desenha os tiros na tela
 	if (!bullets.empty()) {
 		for (auto& bullet : this->bullets) {
 			bullet->moveDirection();
+			// verifica se o tiro acertou algum inimigo
 			for (auto& enemy : this->enemies) {
 				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
 					enemy->setHealth(enemy->getHealth() - 0.001f);
 				}
 			}
+
 			this->renderWindow->draw(bullet->getSprite());
 		}
 	}
 
+	// desenha os inimigos na tela
 	if (!enemies.empty()) {
 		for (auto& enemy : this->enemies) {
+
+			// deleta a instancia de inimigo da memoria
 			if (enemy->isDead()) {
 				//enemies.erase(); deletar da memoria, fazer para bullets
 				continue;
 			}
+
 			enemy->goToPlayer(this->player->getPos());
+
+			// verifica se o inimigo chegou perto do player
 			if (enemy->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
 				enemy->attack(this->player);
 			}
@@ -84,11 +96,13 @@ void Game::updateFrame()
 		}
 	}
 
+	// atualiza o hud
 	this->hud->updateHud(this->renderWindow, *(this->player));
 
 	if (player->isDead()) {
 		this->quitGame();
 	}
+
 	this->renderWindow->display();
 }
 
@@ -96,8 +110,6 @@ void Game::updateFrame()
 void Game::startGame()
 {
 	this->inMenu = false;
-	sf::Texture* bullet = new sf::Texture;
-	bullet->loadFromFile("../images/Bullet/Simple_Bullet.png");
 
 	Player* p = new Player("../images/Player/move.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
@@ -108,8 +120,11 @@ void Game::startGame()
 		enemies.push_back(e);
 	}
 
-
+	// o tipo de bala provavelmente vai trocar com o tipo de arma no futuro
+	sf::Texture* bullet = new sf::Texture;
+	bullet->loadFromFile("../images/Bullet/Simple_Bullet.png");
 	this->weapon = new Weapon(bullet);
+
 	this->attackTimer->restart();
 }
 
