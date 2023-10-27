@@ -53,6 +53,8 @@ void Game::updateFrame()
 
 	this->renderWindow->clear(sf::Color::Black);
 
+	// ================== Player ================================
+
 	// animação do player
 	this->player->animate();
 
@@ -69,6 +71,9 @@ void Game::updateFrame()
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 
+
+	// ================== Bullets ================================
+
 	// desenha os tiros na tela
 	if (!bullets.empty()) {
 		for (auto& bullet : this->bullets) {
@@ -83,6 +88,8 @@ void Game::updateFrame()
 			this->renderWindow->draw(bullet->getSprite());
 		}
 	}
+
+	// ================== Enemy ================================
 
 	// desenha os inimigos na tela
 	if (!enemies.empty()) {
@@ -104,8 +111,12 @@ void Game::updateFrame()
 		}
 	}
 
+	// ================== Hud ================================
+
 	// atualiza o hud
 	this->hud->updateHud(this->renderWindow, *(this->player));
+
+	// ================== Fim ================================
 
 	if (player->isDead()) {
 		this->quitGame();
