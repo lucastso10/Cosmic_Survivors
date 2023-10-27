@@ -71,7 +71,6 @@ void Game::updateFrame()
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 
-	std::cout << this->player->isOnScreen(this->renderWindow) << "\n";
 
 
 	// ================== Bullets ================================
@@ -104,12 +103,17 @@ void Game::updateFrame()
 				continue;
 			}
 
-			enemy->goToPlayer(this->player->getPos());
+			
+
+			enemy->goToPlayer(this->player->getPos(), enemies);
 
 			// verifica se o inimigo chegou perto do player
 			if (enemy->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
+				
 				enemy->attack(this->player);
 			}
+
+			
 			this->renderWindow->draw(enemy->getSprite());
 		}
 	}
@@ -137,10 +141,11 @@ void Game::startGame()
 	this->player = p;
 
 
-	//for (int i = 0; i < 5; i++) {
-	//	Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 15, i * 10));
-	//	enemies.push_back(e);
-	//}
+
+	for (int i = 0; i < 3; i++) {
+		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 300, i * 100));
+		enemies.push_back(e);
+	}
 
 	// o tipo de bala provavelmente vai trocar com o tipo de arma no futuro
 	sf::Texture* bullet = new sf::Texture;
