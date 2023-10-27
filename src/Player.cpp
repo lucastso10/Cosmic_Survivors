@@ -13,12 +13,13 @@ Player::Player(std::string file, sf::Vector2f start_pos)
 	sf::Texture* texture = new sf::Texture;
 	sf::Sprite sprite;
 
-	texture->loadFromFile(file, sf::IntRect(12, 0, 26, 26));
+	texture->loadFromFile(file);
 	sprite.setTexture(*texture);
 
 	this->setTexture(texture);
 	this->setSprite(sprite);
 	this->setPos(start_pos);
+	this->setTextureSpriteRect(sf::IntRect(12, 0, 26, 26));
 	this->setScale(sf::Vector2f(1.5f, 1.5f));
 	this->animationClock.restart();
 	this->adjustOrigin();
@@ -36,17 +37,25 @@ void Player::setWalking(bool walking)
 
 void Player::animate()
 {
-	sf::IntRect newRect = this->getTextureSpriteRect();
+	if (this->animationClock.getElapsedTime() >= sf::milliseconds(120)) {
+		sf::IntRect newRect;
 
-	if (this->animationClock.getElapsedTime() >= sf::milliseconds(150)) {
-		if (newRect.left == 48)
-			newRect.left = 0;
-		else
-			newRect.left += 16;
+		if (this->isWalking) {
+			newRect = this->getTextureSpriteRect();
+
+			if (newRect.top == 182)
+				newRect.top = 0;
+			else
+				newRect.top += 26;
+		}
+		else {
+			newRect = sf::IntRect(12, 0, 26, 26);
+		}
+
+		this->setTextureSpriteRect(newRect);
+
 		this->animationClock.restart();
 	}
-
-	this->setTextureSpriteRect(newRect);
 }
 
 void Player::levelUp()

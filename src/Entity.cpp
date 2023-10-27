@@ -95,3 +95,8 @@ void Entity::setScale(sf::Vector2f scale)
 {
 	this->sprite.setScale(scale);
 }
+
+void Entity::flip()
+{
+	this->sprite.setScale(this->sprite.getScale().x * -1, this->sprite.getScale().y);
+}
