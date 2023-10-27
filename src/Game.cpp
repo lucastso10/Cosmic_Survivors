@@ -143,7 +143,7 @@ void Game::startGame()
 
 
 	for (int i = 0; i < 3; i++) {
-		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 100, i * 50));
+		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 300, i * 100));
 		enemies.push_back(e);
 	}
 

@@ -6,13 +6,14 @@ Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	this->damage = 0.001;
 	this->armor = 0.0;
 	this->health = 15.0;
-	this->speed = 25.0f;
+	this->speed = 100.0f;
 
 	sf::Texture* enemyTexture = new sf::Texture;
 	sf::Sprite enemySprite;
 
 	enemyTexture->loadFromFile(arquivo);
 	enemySprite.setTexture(*enemyTexture);
+	enemySprite.setTextureRect(sf::IntRect(10, 4, 12, 22));
 
 	this->setTexture(enemyTexture);
 	this->setSprite(enemySprite);
@@ -41,17 +42,19 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 
 	//Checa colisao de inimigos 
 
-	//for (auto& enemy : enemies) {
-	//	if (this->checkCollision(*enemy)) {
-	//		//std::cout << ((movementDirection / this->speed) * -1.f).x << std::endl;
-	//		this->move((movementDirection / this->speed) * -1.f);
-	//	}
-	//}
+	for (auto& enemy : enemies) {
+		if (this->getSprite().getGlobalBounds() == enemy->getSprite().getGlobalBounds())
+			continue;
+
+		if (this->checkCollision(*enemy)) {
+			this->move((movementDirection / this->speed) * -1.f);
+		}
+	}
 
 
 }
 
 bool Enemy::checkCollision(const Enemy& enemy)
 {
-	return this->sprite.getLocalBounds().intersects(enemy.sprite.getLocalBounds());
+	return this->sprite.getGlobalBounds().intersects(enemy.sprite.getGlobalBounds());
 }
