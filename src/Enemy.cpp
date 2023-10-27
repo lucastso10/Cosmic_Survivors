@@ -2,11 +2,10 @@
 #include <math.h>
 
 Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
-	this->dano = 0.001;
+	this->damage = 0.001;
 	this->armor = 0.0;
 	this->health = 15.0;
 	this->speed = 25.0f;
-	this->Pos = pos;
 
 	sf::Texture* enemyTexture = new sf::Texture;
 	sf::Sprite enemySprite;
@@ -20,13 +19,14 @@ Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	this->adjustOrigin();
 }
 
-Enemy::~Enemy() {
+Enemy::~Enemy() 
+{
 	
 }
 
 void Enemy::attack(Player* player)
 {
-	player->setHealth(player->getHealth() - this->dano);
+	player->setHealth(player->getHealth() - this->damage);
 }
 
 void Enemy::goToPlayer(sf::Vector2f currentPlayerPos)

@@ -37,7 +37,7 @@ public:
 
 	void adjustOrigin();
 
-	bool isOnScreen();
+	bool isOnScreen(const sf::RenderWindow* screen);
 	void move(sf::Vector2f direction);
 	void onDeath();
 	bool isDead();

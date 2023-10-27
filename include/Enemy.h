@@ -7,9 +7,7 @@
 class Enemy : public Entity
 {
 private:
-	float dano;
-	sf::Vector2f Pos;
-
+	float damage;
 
 public:
 	Enemy(std::string, sf::Vector2f);

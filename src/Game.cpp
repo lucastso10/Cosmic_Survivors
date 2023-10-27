@@ -71,6 +71,8 @@ void Game::updateFrame()
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 
+	std::cout << this->player->isOnScreen(this->renderWindow) << "\n";
+
 
 	// ================== Bullets ================================
 

@@ -1,8 +1,15 @@
 #include "Entity.h"
 #include <iostream>
-bool Entity::isOnScreen()
+bool Entity::isOnScreen(const sf::RenderWindow* screen)
 {
-    return false;
+	std::cout << screen->getSize().x << " " << sprite.getGlobalBounds().left + sprite.getTextureRect().width << "\n";
+	if (screen->getSize().x <= sprite.getGlobalBounds().left || 0 >= sprite.getGlobalBounds().left + sprite.getTextureRect().width)
+		return false;
+
+	if (screen->getSize().y <= sprite.getGlobalBounds().top || 0 >= sprite.getGlobalBounds().top + sprite.getTextureRect().height)
+		return false;
+		
+	return true;
 }
 
 void Entity::setPos(sf::Vector2f pos)
