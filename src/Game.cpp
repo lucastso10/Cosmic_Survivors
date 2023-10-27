@@ -80,6 +80,7 @@ void Game::updateFrame()
 	if (!bullets.empty()) {
 		for (auto& bullet : this->bullets) {
 			bullet->moveDirection();
+				
 			// verifica se o tiro acertou algum inimigo
 			for (auto& enemy : this->enemies) {
 				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {

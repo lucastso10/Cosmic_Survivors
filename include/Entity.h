@@ -22,6 +22,8 @@ public:
 
 	sf::Clock animationClock;
 
+	~Entity();
+
 	void setPos(sf::Vector2f pos);
 	sf::Vector2f getPos();
 

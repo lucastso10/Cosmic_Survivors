@@ -1,8 +1,13 @@
 #include "Entity.h"
 #include <iostream>
+
+Entity::~Entity() 
+{
+	this->texture = nullptr;
+}
+
 bool Entity::isOnScreen(const sf::RenderWindow* screen)
 {
-	std::cout << screen->getSize().x << " " << sprite.getGlobalBounds().left + sprite.getTextureRect().width << "\n";
 	if (screen->getSize().x <= sprite.getGlobalBounds().left || 0 >= sprite.getGlobalBounds().left + sprite.getTextureRect().width)
 		return false;
 
