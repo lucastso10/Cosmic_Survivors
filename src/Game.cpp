@@ -10,8 +10,13 @@ Game::Game(sf::RenderWindow* window)
 	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
 	this->bullets.reserve(100);
 	this->attackTimer = new sf::Clock;
+	this->fpsClock = new sf::Clock;
+	this->fpsCounter = 0;
+	this->fps = new sf::Text;
 	this->hud = new Hud;
 	this->weapon = nullptr;
+	this->map = nullptr;
+	this->font.loadFromFile("../fonte/kenneypixel.ttf");
 }
 
 Game::~Game()
@@ -52,6 +57,8 @@ void Game::updateFrame()
 {
 
 	this->renderWindow->clear(sf::Color::Black);
+	// ================== Map ================================
+	this->map->drawMap(this->renderWindow);
 
 	// ================== Player ================================
 
@@ -123,6 +130,23 @@ void Game::updateFrame()
 	// atualiza o hud
 	this->hud->updateHud(this->renderWindow, *(this->player));
 
+	// ================== FPS ================================
+	
+	this->fpsCounter++;	
+	if (this->fpsClock->getElapsedTime().asSeconds() >= 1.f)
+	{
+		this->fps->setFont(this->font);
+		this->fps->setString(std::to_string(this->fpsCounter));
+		this->fps->setFillColor(sf::Color::White);
+		this->fps->setOutlineColor(sf::Color::Black);
+		this->fps->setOutlineThickness(1.f);
+		this->fps->setPosition({1300, 0});
+
+		this->fpsCounter = 0;
+		this->fpsClock->restart();
+	}
+	this->renderWindow->draw(*(this->fps));
+
 	// ================== Fim ================================
 
 	if (player->isDead()) {
@@ -140,6 +164,8 @@ void Game::startGame()
 	Player* p = new Player("../images/Player/move.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
 
+	Map* m = new Map("../images/tileset.png");
+	this->map = m;
 
 
 	for (int i = 0; i < 3; i++) {
@@ -153,6 +179,7 @@ void Game::startGame()
 	this->weapon = new Weapon(bullet);
 
 	this->attackTimer->restart();
+	this->fpsClock->restart();
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?

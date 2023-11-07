@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Hud.h"
+#include "Map.h"
 #include "Weapon.h"
 
 class Game
@@ -23,8 +24,13 @@ private:
 	//int spawnEnemyTimer;
 
 	sf::Clock* attackTimer;
+	sf::Clock* fpsClock;
+	int fpsCounter;
+	sf::Text* fps;
 	sf::Mouse mouse;
 	Hud* hud;
+	Map* map;
+	sf::Font font;
 
 
 public:

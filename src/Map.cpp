@@ -1,20 +1,21 @@
 #include "Map.h"
 
-Map::Map(std::string file)
+Map::Map(std::string arquivo)
 {
-	//this->texture
+	sf::Texture* texture = new sf::Texture;
+	sf::Sprite sprite;
+	texture->loadFromFile(arquivo);
+	sprite.setTexture(*texture);
+
+	this->texture = texture;
+	this->sprite = sprite;
 }
 
 Map::~Map()
 {
 }
 
-sf::Vector2f Map::getSize()
+void Map::drawMap(sf::RenderWindow* render)
 {
-	return this->size;
-}
-
-sf::Texture Map::getTexture()
-{
-	return this->texture;
+	render->draw(this->sprite);
 }
