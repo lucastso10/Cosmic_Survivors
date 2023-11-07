@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Hud.h"
+#include "Map.h"
 #include "Weapon.h"
 
 class Game
@@ -25,6 +26,7 @@ private:
 	sf::Clock* attackTimer;
 	sf::Mouse mouse;
 	Hud* hud;
+	Map* map;
 
 
 public:

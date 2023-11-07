@@ -12,6 +12,7 @@ Game::Game(sf::RenderWindow* window)
 	this->attackTimer = new sf::Clock;
 	this->hud = new Hud;
 	this->weapon = nullptr;
+	this->map = nullptr;
 }
 
 Game::~Game()
@@ -52,6 +53,8 @@ void Game::updateFrame()
 {
 
 	this->renderWindow->clear(sf::Color::Black);
+	// ================== Map ================================
+	this->map->drawMap(this->renderWindow);
 
 	// ================== Player ================================
 
@@ -140,6 +143,8 @@ void Game::startGame()
 	Player* p = new Player("../images/Player/move.png", sf::Vector2f(200.0f, 150.0f));
 	this->player = p;
 
+	Map* m = new Map("../images/tileset.png");
+	this->map = m;
 
 
 	for (int i = 0; i < 3; i++) {
