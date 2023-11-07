@@ -24,9 +24,13 @@ private:
 	//int spawnEnemyTimer;
 
 	sf::Clock* attackTimer;
+	sf::Clock* fpsClock;
+	int fpsCounter;
+	sf::Text* fps;
 	sf::Mouse mouse;
 	Hud* hud;
 	Map* map;
+	sf::Font font;
 
 
 public:
