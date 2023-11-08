@@ -12,7 +12,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 
 	sf::Sprite sprite;
 	sprite.setTexture(*texture);
-
+	this->setSpeed(45.0f);
 	this->setSprite(sprite);
 	this->setPos(start_pos);
 	this->setTextureSpriteRect(sf::IntRect(0, 0, 16, 16)); // assume que utiliza uma textura 16x16 do pacote de textura all fire bullet pixels

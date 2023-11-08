@@ -1,11 +1,10 @@
 #include "Enemy.h"
 #include <math.h>
 
-Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
+Enemy::Enemy(std::string arquivo) {
 	this->damage = 0.001;
 	this->armor = 0.0;
 	this->health = 15.0;
-	this->speed = 100.0f;
 
 	sf::Texture* enemyTexture = new sf::Texture;
 	sf::Sprite enemySprite;
@@ -13,11 +12,11 @@ Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	enemyTexture->loadFromFile(arquivo);
 	enemySprite.setTexture(*enemyTexture);
 	enemySprite.setTextureRect(sf::IntRect(10, 4, 12, 22));
-
+	this->setSpeed(0.5f);
 	this->setTexture(enemyTexture);
 	this->setSprite(enemySprite);
-	this->setPos(pos);
 	this->adjustOrigin();
+	this->enemySpawn();
 }
 
 Enemy::~Enemy()
@@ -37,18 +36,18 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 	float distanceToPlayer = sqrt(enemyToPlayer.x * enemyToPlayer.x + enemyToPlayer.y * enemyToPlayer.y);
 
 	sf::Vector2f movementDirection = enemyToPlayer / distanceToPlayer;
-	this->move(movementDirection / this->speed);
+	this->move(movementDirection);
 
-	//Checa colisao de inimigos 
+	//Checa colisao de inimigos NAO FUNCIONA LEGAL
 
-	for (auto& enemy : enemies) {
+	/*for (auto& enemy : enemies) {
 		if (this->getSprite().getGlobalBounds() == enemy->getSprite().getGlobalBounds())
 			continue;
 
 		if (this->checkCollision(*enemy)) {
-			this->move((movementDirection / this->speed) * -1.f);
+			this->move((movementDirection * this->speed) * -1.f);
 		}
-	}
+	}*/
 
 
 }
@@ -56,4 +55,34 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 bool Enemy::checkCollision(const Enemy& enemy)
 {
 	return this->sprite.getGlobalBounds().intersects(enemy.sprite.getGlobalBounds());
+}
+
+void Enemy::enemySpawn()
+{
+	int random = rand();
+	float x, y;
+
+	if (random % 2 == 0) {
+		random = rand();
+		if (random % 2 == 0) {
+			x = (random % (0 - 100) + 100) * (-1);
+			y = (rand() % 850) - 100;
+		}
+		else {
+			x = (random % (1360 - 1460) + 1460);
+			y = (rand() % 850) - 100;
+		}
+	}
+	else {
+		random = rand();
+		if (random % 2 == 0) {
+			x = (rand() % 1460) - 100;
+			y = (random % (0 - 100) + 100) * (-1);
+		}
+		else {
+			x = (rand() % 1460) - 100;
+			y = (random % (750 - 850) + 850);
+		}
+	}
+	this->setPos(sf::Vector2f(x, y));
 }
