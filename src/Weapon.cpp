@@ -4,7 +4,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 {
 	// esses status podem trocar dependendo do tipo de arma
 	// que o usuario escolher
-	this->baseDamage = 1.0;
+	this->baseDamage = 100.0;
 	this->armorPenetration = 0;
 	this->criticalChance = 0;
 	this->criticalDamage = 0;
@@ -20,7 +20,7 @@ Weapon::~Weapon()
 
 float Weapon::calculateDamage()
 {
-    return 0.0f;
+	return this->baseDamage;
 }
 
 bool Weapon::checkAttackTimer(sf::Clock* attackTimer)
