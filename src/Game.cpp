@@ -103,8 +103,6 @@ void Game::updateFrame()
 				continue;
 			}
 
-			
-
 			enemy->goToPlayer(this->player->getPos(), enemies);
 
 			// verifica se o inimigo chegou perto do player
