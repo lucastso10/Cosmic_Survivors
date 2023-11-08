@@ -1,6 +1,5 @@
 #include "Enemy.h"
 #include <math.h>
-#include <iostream>
 
 Enemy::Enemy(std::string arquivo, sf::Vector2f pos) {
 	this->damage = 0.001;

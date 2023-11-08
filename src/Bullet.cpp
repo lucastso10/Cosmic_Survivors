@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include <math.h>
 
 Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
 {

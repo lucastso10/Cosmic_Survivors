@@ -2,25 +2,21 @@
 #ifndef _MAP_H
 #define _MAP_H
 
-#include <string>
-
 #include <SFML/Graphics.hpp>
-#include <SFML/System/Vector2.hpp>
 
 class Map
 {
 private:
-	sf::Vector2f size;
-	sf::Texture texture;
+	// tamanho do mapa será o tamanho da tela
+	sf::Texture* texture;
+	sf::Sprite sprite;
 
 public:
 
-	Map(std::string file);
+	Map(std::string arquivo);
 	~Map();
 
-	sf::Vector2f getSize();
-	sf::Texture getTexture();
-
+	void drawMap(sf::RenderWindow* render);
 };
 
 #endif
