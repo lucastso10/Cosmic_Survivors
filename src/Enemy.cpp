@@ -4,7 +4,7 @@
 Enemy::Enemy(std::string arquivo) {
 	this->damage = 0.001;
 	this->armor = 0.0;
-	this->health = 15.0;
+	this->health = 1.0;
 
 	sf::Texture* enemyTexture = new sf::Texture;
 	sf::Sprite enemySprite;
@@ -40,14 +40,14 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 
 	//Checa colisao de inimigos NAO FUNCIONA LEGAL
 
-	/*for (auto& enemy : enemies) {
+	for (auto& enemy : enemies) {
 		if (this->getSprite().getGlobalBounds() == enemy->getSprite().getGlobalBounds())
 			continue;
 
 		if (this->checkCollision(*enemy)) {
 			this->move((movementDirection * this->speed) * -1.f);
 		}
-	}*/
+	}
 
 
 }
