@@ -4,7 +4,7 @@ Player::Player(std::string file, sf::Vector2f start_pos)
 {
 	this->setHealth(100);
 	this->setArmor(20);
-	this->setSpeed(2);
+	this->setSpeed(10);
 
 	this->xp = 0;
 	this->level = 0;

@@ -1,5 +1,7 @@
 #include "Game.h"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 Game::Game(sf::RenderWindow* window)
 {
@@ -166,8 +168,9 @@ void Game::startGame()
 	this->map = m;
 
 
-	for (int i = 0; i < 3; i++) {
-		Enemy* e = new Enemy("../images/enemy.png", sf::Vector2f(i * 300, i * 100));
+	//srand(time(NULL));
+	for (int i = 0; i < 25; i++) {
+		Enemy* e = new Enemy("../images/enemy.png");
 		enemies.push_back(e);
 	}
 
