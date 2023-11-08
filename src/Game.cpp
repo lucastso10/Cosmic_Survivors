@@ -81,6 +81,9 @@ void Game::updateFrame()
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 
 
+	// move a camera junto com o player
+	this->view.setCenter(this->player->getPos());
+	this->renderWindow->setView(this->view);
 
 	// ================== Bullets ================================
 
@@ -161,7 +164,7 @@ void Game::startGame()
 {
 	this->inMenu = false;
 
-	Player* p = new Player("../images/Player/move.png", sf::Vector2f(200.0f, 150.0f));
+	Player* p = new Player("../images/Player/move.png", sf::Vector2f(680.0f, 375.0f));
 	this->player = p;
 
 	Map* m = new Map("../images/tileset.png");
@@ -181,6 +184,9 @@ void Game::startGame()
 
 	this->attackTimer->restart();
 	this->fpsClock->restart();
+
+	this->view.reset(sf::FloatRect(0, 0, 1360, 750)); 
+	this->renderWindow->setView(this->view);
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?

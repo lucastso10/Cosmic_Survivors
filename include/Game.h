@@ -31,7 +31,7 @@ private:
 	Hud* hud;
 	Map* map;
 	sf::Font font;
-
+	sf::View view;
 
 public:
 

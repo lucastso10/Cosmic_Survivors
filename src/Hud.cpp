@@ -1,4 +1,5 @@
 #include "Hud.h"
+#include <iostream>
 
 Hud::Hud()
 {
@@ -31,6 +32,9 @@ void Hud::updateHud(sf::RenderWindow *window, Player player)
 	if (player.getHealth() < 1) {
 		player.isDead();
 	}
-	
+
+	hpBarSprite.setPosition(sf::Vector2f(window->getPosition()) + sf::Vector2f(100.f, 100.f) );
+
+	std::cout << window->getView().getViewport().width << " " << window->getView().getViewport().height << "\n";
 	window->draw(hpBarSprite);
 }
