@@ -3,6 +3,7 @@
 
 Entity::~Entity() 
 {
+	delete texture;
 	this->texture = nullptr;
 }
 
@@ -66,11 +67,6 @@ void Entity::move(sf::Vector2f direction)
 	this->sprite.move(direction * this->speed);
 }
 
-void Entity::onDeath() // isso pode ser especifico de cada tipo de entidade
-{
-}
-
-
 bool Entity::isDead()
 {
 	return this->health <= 0;
@@ -111,4 +107,14 @@ void Entity::setScale(sf::Vector2f scale)
 void Entity::flip()
 {
 	this->sprite.setScale(this->sprite.getScale().x * -1, this->sprite.getScale().y);
+}
+
+void Entity::setInUse(bool use)
+{
+	this->isInUse = use;
+}
+
+bool Entity::isInUse()
+{
+	return this->isInUse;
 }

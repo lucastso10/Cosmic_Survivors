@@ -177,9 +177,11 @@ void Game::startGame()
 	this->map = m;
 
 
-	//srand(time(NULL));
+	sf::Texture* enemyTexture = new sf::Texture;
+	enemyTexture->loadFromFile("../images/enemy.png");
 	for (int i = 0; i < 25; i++) {
-		Enemy* e = new Enemy("../images/enemy.png");
+		Enemy* e = new Enemy(enemyTexture);
+		e->enemySpawn(this->renderWindow);
 		enemies.push_back(e);
 	}
 

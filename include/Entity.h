@@ -8,13 +8,14 @@
 class Entity
 {
 protected:
-	// removi stationary, um objeto imovel tem que ser sua propria classe!
 	float health = 0.0;
 	float armor = 0.0;
 	float speed = 0.0;
 	sf::Texture* texture;
 	sf::Sprite sprite;
 	sf::IntRect spriteTextureRect;
+
+	bool inUse;
 
 	
 
@@ -31,11 +32,11 @@ public:
 	sf::Sprite getSprite();
 	void setTexture(sf::Texture* texture);
 
-	void setStationary(bool stat);
-
-
 	void setTextureSpriteRect(sf::IntRect rect);
 	sf::IntRect getTextureSpriteRect();
+	
+	void setInUse(bool use);
+	bool isInUse();
 
 	void adjustOrigin();
 

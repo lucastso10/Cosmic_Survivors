@@ -1,22 +1,19 @@
 #include "Enemy.h"
 #include <math.h>
 
-Enemy::Enemy(std::string arquivo) {
+Enemy::Enemy(sf::Texture* enemyTexture) {
 	this->damage = 0.001;
 	this->armor = 0.0;
 	this->health = 1.0;
 
-	sf::Texture* enemyTexture = new sf::Texture;
 	sf::Sprite enemySprite;
 
-	enemyTexture->loadFromFile(arquivo);
 	enemySprite.setTexture(*enemyTexture);
 	enemySprite.setTextureRect(sf::IntRect(10, 4, 12, 22));
 	this->setSpeed(0.5f);
 	this->setTexture(enemyTexture);
 	this->setSprite(enemySprite);
 	this->adjustOrigin();
-	this->enemySpawn();
 }
 
 Enemy::~Enemy()
@@ -40,6 +37,7 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 
 	//Checa colisao de inimigos NAO FUNCIONA LEGAL
 
+	/*
 	for (auto& enemy : enemies) {
 		if (this->getSprite().getGlobalBounds() == enemy->getSprite().getGlobalBounds())
 			continue;
@@ -48,6 +46,7 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 			this->move((movementDirection * this->speed) * -1.f);
 		}
 	}
+	*/
 
 
 }
@@ -57,7 +56,7 @@ bool Enemy::checkCollision(const Enemy& enemy)
 	return this->sprite.getGlobalBounds().intersects(enemy.sprite.getGlobalBounds());
 }
 
-void Enemy::enemySpawn()
+void Enemy::enemySpawn(sf::RenderWindow* window)
 {
 	int random = rand();
 	float x, y;
@@ -84,5 +83,5 @@ void Enemy::enemySpawn()
 			y = (random % (750 - 850) + 850);
 		}
 	}
-	this->setPos(sf::Vector2f(x, y));
+	this->setPos(window->mapPixelToCoords(sf::Vector2i(x, y)));
 }
