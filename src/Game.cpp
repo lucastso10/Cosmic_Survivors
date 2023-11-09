@@ -77,7 +77,7 @@ void Game::updateFrame()
 
 	// verifica se o player atira nesse frame se sim já aloca um nova instância no vetor
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
-		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
+		this->PlayerAttack(this->renderWindow->mapPixelToCoords(this->mouse.getPosition(*(this->renderWindow))));
 
 	// desenha o player
 	this->renderWindow->draw(this->player->getSprite());
