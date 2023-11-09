@@ -58,10 +58,6 @@ void Entity::adjustOrigin()
 	this->sprite.setOrigin((this->sprite.getLocalBounds().getSize() / 2.0f));
 }
 
-void Entity::setStationary(bool stat)
-{
-}
-
 void Entity::move(sf::Vector2f direction)
 {
 	this->sprite.move(direction * this->speed);
@@ -111,10 +107,10 @@ void Entity::flip()
 
 void Entity::setInUse(bool use)
 {
-	this->isInUse = use;
+	this->inUse = use;
 }
 
 bool Entity::isInUse()
 {
-	return this->isInUse;
+	return this->inUse;
 }

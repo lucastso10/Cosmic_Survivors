@@ -14,13 +14,9 @@ Game::Game()
 	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
 	this->bullets.reserve(100);
 	this->attackTimer = new sf::Clock;
-	this->fpsClock = new sf::Clock;
-	this->fpsCounter = 0;
-	this->fps = new sf::Text;
 	this->hud = new Hud;
 	this->weapon = nullptr;
 	this->map = nullptr;
-	this->font.loadFromFile("../fonte/kenneypixel.ttf");
 }
 
 Game::~Game()
@@ -130,29 +126,16 @@ void Game::updateFrame()
 		}
 	}
 
+	// ================== Hud ================================
+	
 	this->renderWindow->setView(this->renderWindow->getDefaultView());
 
-	// ================== Hud ================================
-
 	// atualiza o hud
-	this->hud->updateHud(this->renderWindow, *(this->player));
+	this->renderWindow->draw(this->hud->updateHpBar(this->player));
 
-	// ================== FPS ================================
-	
-	this->fpsCounter++;	
-	if (this->fpsClock->getElapsedTime().asSeconds() >= 1.f)
-	{
-		this->fps->setFont(this->font);
-		this->fps->setString(std::to_string(this->fpsCounter));
-		this->fps->setFillColor(sf::Color::White);
-		this->fps->setOutlineColor(sf::Color::Black);
-		this->fps->setOutlineThickness(1.f);
-		this->fps->setPosition({1300, 0});
+	this->renderWindow->draw(this->hud->updateFPS());
 
-		this->fpsCounter = 0;
-		this->fpsClock->restart();
-	}
-	this->renderWindow->draw(*(this->fps));
+	this->renderWindow->setView(this->view);
 
 	// ================== Fim ================================
 
@@ -160,7 +143,6 @@ void Game::updateFrame()
 		this->quitGame();
 	}
 
-	this->renderWindow->setView(this->view);
 
 	this->renderWindow->display();
 }
@@ -191,7 +173,6 @@ void Game::startGame()
 	this->weapon = new Weapon(bullet);
 
 	this->attackTimer->restart();
-	this->fpsClock->restart();
 
 	this->view.reset(sf::FloatRect(0, 0, 1360, 750)); 
 	this->renderWindow->setView(this->view);
