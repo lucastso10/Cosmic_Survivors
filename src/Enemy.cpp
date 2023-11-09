@@ -13,6 +13,7 @@ Enemy::Enemy(sf::Texture* enemyTexture) {
 	this->setSpeed(0.5f);
 	this->setTexture(enemyTexture);
 	this->setSprite(enemySprite);
+	this->setScale(sf::Vector2f(1.5f, 1.5f));
 	this->adjustOrigin();
 }
 
