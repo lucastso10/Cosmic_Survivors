@@ -17,7 +17,7 @@ public:
 	void goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemies);
 	
 	bool checkCollision(const Enemy& enemy);
-	void enemySpawn(sf::RenderWindow* window);
+	void spawn(sf::RenderWindow* window);
 
 	//sf::Vector2f teste(sf::Vector2f);
 };

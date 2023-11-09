@@ -104,13 +104,3 @@ void Entity::flip()
 {
 	this->sprite.setScale(this->sprite.getScale().x * -1, this->sprite.getScale().y);
 }
-
-void Entity::setInUse(bool use)
-{
-	this->inUse = use;
-}
-
-bool Entity::isInUse()
-{
-	return this->inUse;
-}

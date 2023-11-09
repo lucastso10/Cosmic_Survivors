@@ -11,12 +11,12 @@ Game::Game()
 	this->player = nullptr; // o jogador só é carregado quando o jogo inicia
 	this->running = true;
 	this->inMenu = true;
-	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
-	this->bullets.reserve(100);
 	this->attackTimer = new sf::Clock;
 	this->hud = new Hud;
 	this->weapon = nullptr;
 	this->map = nullptr;
+
+	this->enemySpawnRate = 3.f;	
 }
 
 Game::~Game()
@@ -102,22 +102,30 @@ void Game::updateFrame()
 	}
 
 	// ================== Enemy ================================
+	
+	// determina se precisa spawnar um novo inimigo
+	if (this->enemySpawnClock.getElapsedTime().asSeconds() >= this->enemySpawnRate)
+	{
+		for (auto& enemy : this->enemies) {
+			if (!(enemy->isDead()))
+				continue;
+
+			enemy->spawn(this->renderWindow);
+			break;
+		}
+	}
 
 	// desenha os inimigos na tela
 	if (!enemies.empty()) {
 		for (auto& enemy : this->enemies) {
-
 			// deleta a instancia de inimigo da memoria
-			if (enemy->isDead()) {
-				//enemies.erase(); deletar da memoria, fazer para bullets
+			if (enemy->isDead())
 				continue;
-			}
 
 			enemy->goToPlayer(this->player->getPos(), enemies);
 
 			// verifica se o inimigo chegou perto do player
 			if (enemy->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
-				
 				enemy->attack(this->player);
 			}
 
@@ -158,12 +166,10 @@ void Game::startGame()
 	Map* m = new Map("../images/tileset.png");
 	this->map = m;
 
-
 	sf::Texture* enemyTexture = new sf::Texture;
 	enemyTexture->loadFromFile("../images/enemy.png");
-	for (int i = 0; i < 25; i++) {
+	for (int i = 0; i < 100; i++) {
 		Enemy* e = new Enemy(enemyTexture);
-		e->enemySpawn(this->renderWindow);
 		enemies.push_back(e);
 	}
 
@@ -176,6 +182,8 @@ void Game::startGame()
 
 	this->view.reset(sf::FloatRect(0, 0, 1360, 750)); 
 	this->renderWindow->setView(this->view);
+
+	this->gameClock.restart();
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?
@@ -187,6 +195,11 @@ void Game::pauseGame()
 void Game::quitGame()
 {
 	this->running = false;
+}
+
+float Game::getGameTime()
+{
+	return (this->gameClock.getElapsedTime() + this->recordedTime).asSeconds();
 }
 
 bool Game::isRunning()

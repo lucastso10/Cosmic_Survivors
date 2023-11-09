@@ -4,7 +4,7 @@
 Enemy::Enemy(sf::Texture* enemyTexture) {
 	this->damage = 0.001;
 	this->armor = 0.0;
-	this->health = 1.0;
+	this->health = 0.0;
 
 	sf::Sprite enemySprite;
 
@@ -56,8 +56,9 @@ bool Enemy::checkCollision(const Enemy& enemy)
 	return this->sprite.getGlobalBounds().intersects(enemy.sprite.getGlobalBounds());
 }
 
-void Enemy::enemySpawn(sf::RenderWindow* window)
+void Enemy::spawn(sf::RenderWindow* window)
 {
+	this->health = 20.0; // isso precisa mudar com o tempo
 	int random = rand();
 	float x, y;
 

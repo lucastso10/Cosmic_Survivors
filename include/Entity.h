@@ -15,10 +15,6 @@ protected:
 	sf::Sprite sprite;
 	sf::IntRect spriteTextureRect;
 
-	bool inUse;
-
-	
-
 public:
 
 	sf::Clock animationClock;
@@ -34,9 +30,6 @@ public:
 
 	void setTextureSpriteRect(sf::IntRect rect);
 	sf::IntRect getTextureSpriteRect();
-	
-	void setInUse(bool use);
-	bool isInUse();
 
 	void adjustOrigin();
 
