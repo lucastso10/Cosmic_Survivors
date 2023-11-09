@@ -9,10 +9,7 @@
 
 int main() {
   // a resolução pode ser dinamica no futuro!
-  sf::RenderWindow window(sf::VideoMode(1360, 750), "Wipe Out!");
-  window.setFramerateLimit(200);
-
-  Game game(&window);
+  Game game;
   Menu menu(&game);
 
   Controller controller(&game, &menu);

@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-Game::Game(sf::RenderWindow* window)
+Game::Game()
 {
+	this->renderWindow = new sf::RenderWindow(sf::VideoMode(1360, 750), "Wipe Out!");
+	this->renderWindow->setFramerateLimit(200);
+
 	this->player = nullptr; // o jogador só é carregado quando o jogo inicia
-	this->renderWindow = window;
 	this->running = true;
 	this->inMenu = true;
 	this->enemies.reserve(5); // vetor começa vazio e reserva espaço para 500 ponteiros
@@ -63,27 +65,27 @@ void Game::updateFrame()
 	this->map->drawMap(this->renderWindow);
 
 	// ================== Player ================================
-
+	
 	// animação do player
 	this->player->animate();
-
+	
 	// dependendo da posição do mouse a sprite inverte
-	if (this->player->getSprite().getScale().x > 0 && this->mouse.getPosition(*(this->renderWindow)).x < this->player->getPos().x)
+	if (this->player->getSprite().getScale().x < 0 && this->mouse.getPosition(*(this->renderWindow)).x > this->renderWindow->getSize().x / 2)
 		this->player->flip();
-	else if (this->player->getSprite().getScale().x < 0 && this->mouse.getPosition(*(this->renderWindow)).x > this->player->getPos().x)
+	else if (this->player->getSprite().getScale().x > 0 && this->mouse.getPosition(*(this->renderWindow)).x < this->renderWindow->getSize().x / 2)
 		this->player->flip();
-
-	// desenha o player
-	this->renderWindow->draw(this->player->getSprite());
 
 	// verifica se o player atira nesse frame se sim já aloca um nova instância no vetor
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(static_cast<sf::Vector2f>(this->mouse.getPosition(*(this->renderWindow))));
 
+	// desenha o player
+	this->renderWindow->draw(this->player->getSprite());
 
 	// move a camera junto com o player
 	this->view.setCenter(this->player->getPos());
 	this->renderWindow->setView(this->view);
+
 
 	// ================== Bullets ================================
 
@@ -128,6 +130,8 @@ void Game::updateFrame()
 		}
 	}
 
+	this->renderWindow->setView(this->renderWindow->getDefaultView());
+
 	// ================== Hud ================================
 
 	// atualiza o hud
@@ -155,6 +159,8 @@ void Game::updateFrame()
 	if (player->isDead()) {
 		this->quitGame();
 	}
+
+	this->renderWindow->setView(this->view);
 
 	this->renderWindow->display();
 }

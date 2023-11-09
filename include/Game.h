@@ -35,7 +35,7 @@ private:
 
 public:
 
-	Game(sf::RenderWindow* window);
+	Game();
 	~Game();
 
 	Player* getPlayer();
