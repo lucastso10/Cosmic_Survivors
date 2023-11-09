@@ -21,21 +21,22 @@ private:
 	std::vector<Bullet*> bullets;
 	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
 	bool inMenu; // Checa se está em algum menu
-	//int spawnEnemyTimer;
 
 	sf::Clock* attackTimer;
-	sf::Clock* fpsClock;
-	int fpsCounter;
-	sf::Text* fps;
 	sf::Mouse mouse;
 	Hud* hud;
 	Map* map;
-	sf::Font font;
+	sf::View view;
 
+	sf::Clock enemySpawnClock;
+	float enemySpawnRate;
+
+	sf::Clock gameClock; // esse clock precisa de uma funçao pra ser acessado, pq o player pode pausar o jogo
+	sf::Time recordedTime; // use a função
 
 public:
 
-	Game(sf::RenderWindow* window);
+	Game();
 	~Game();
 
 	Player* getPlayer();
@@ -48,6 +49,8 @@ public:
 	void pauseGame();
 	void quitGame();
 	bool isRunning();
+
+	float getGameTime();
 
 	
 	

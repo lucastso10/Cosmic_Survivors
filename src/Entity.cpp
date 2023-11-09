@@ -3,6 +3,7 @@
 
 Entity::~Entity() 
 {
+	delete texture;
 	this->texture = nullptr;
 }
 
@@ -57,19 +58,10 @@ void Entity::adjustOrigin()
 	this->sprite.setOrigin((this->sprite.getLocalBounds().getSize() / 2.0f));
 }
 
-void Entity::setStationary(bool stat)
-{
-}
-
 void Entity::move(sf::Vector2f direction)
 {
 	this->sprite.move(direction * this->speed);
 }
-
-void Entity::onDeath() // isso pode ser especifico de cada tipo de entidade
-{
-}
-
 
 bool Entity::isDead()
 {

@@ -14,6 +14,10 @@ Player::Player(std::string file, sf::Vector2f start_pos)
 	sf::Sprite sprite;
 
 	texture->loadFromFile(file);
+
+	if (texture == nullptr)
+	  std::cout << "oh no hermano!\n";
+
 	sprite.setTexture(*texture);
 
 	this->setTexture(texture);

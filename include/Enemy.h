@@ -10,14 +10,14 @@ private:
 	float damage;
 
 public:
-	Enemy(std::string);
+	Enemy(sf::Texture*);
 	~Enemy();
 
 	void attack(Player* player);
 	void goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemies);
 	
 	bool checkCollision(const Enemy& enemy);
-	void enemySpawn();
+	void spawn(sf::RenderWindow* window);
 
 	//sf::Vector2f teste(sf::Vector2f);
 };

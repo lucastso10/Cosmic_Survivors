@@ -12,12 +12,18 @@ private:
 	sf::Texture hpBarText;
 	sf::Sprite hpBarSprite;
 	int rectLeft = 48;
+
+	sf::Clock fpsClock;
+	int fpsCounter;
+	sf::Text fps;
+	sf::Font font;
 	
 public:
 	Hud();
 	~Hud();
 
-	void updateHud(sf::RenderWindow* window, Player player);
+	sf::Text updateFPS();
+	sf::Sprite updateHpBar(Player* player);
 
 
 };
