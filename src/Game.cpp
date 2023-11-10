@@ -151,7 +151,6 @@ void Game::updateFrame()
 		this->quitGame();
 	}
 
-
 	this->renderWindow->display();
 }
 
