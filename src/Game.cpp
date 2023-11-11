@@ -113,6 +113,7 @@ void Game::updateFrame()
 			enemy->spawn(this->renderWindow);
 			break;
 		}
+		this->enemySpawnClock.restart();
 	}
 
 	// desenha os inimigos na tela
