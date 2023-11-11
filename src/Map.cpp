@@ -9,6 +9,8 @@ Map::Map(std::string arquivo)
 
 	this->texture = texture;
 	this->sprite = sprite;
+
+	this->sprite.setPosition(-2040,-1125);
 }
 
 Map::~Map()
