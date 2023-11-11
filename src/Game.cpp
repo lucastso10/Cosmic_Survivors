@@ -45,11 +45,9 @@ Player* Game::getPlayer()
 
 void Game::PlayerAttack(sf::Vector2f direction)
 {
-
 	Bullet* b = new Bullet(this->weapon->getBulletTexture(), this->player->getPos());
 	b->setDirection(direction);
 	this->bullets.push_back(b);
-
 }
 
 // todos o que vai ser desenhado na tela precisa acontecer aqui
@@ -94,6 +92,9 @@ void Game::updateFrame()
 			for (auto& enemy : this->enemies) {
 				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
 					enemy->setHealth(enemy->getHealth() - this->weapon->calculateDamage()); // seria bom uma função para diminuir a vida de uma entidade
+					if (enemy->isDead()) {
+						this->player->incrementXp(1);
+					}
 				}
 			}
 
@@ -107,21 +108,26 @@ void Game::updateFrame()
 	if (this->enemySpawnClock.getElapsedTime().asSeconds() >= this->enemySpawnRate)
 	{
 		for (auto& enemy : this->enemies) {
-			if (!(enemy->isDead()))
+			if (!(enemy->isDead())) {
 				continue;
+			}
 
 			enemy->spawn(this->renderWindow);
 			break;
 		}
 		this->enemySpawnClock.restart();
 	}
-
+	
 	// desenha os inimigos na tela
 	if (!enemies.empty()) {
 		for (auto& enemy : this->enemies) {
 			// deleta a instancia de inimigo da memoria
-			if (enemy->isDead())
+			
+			if (enemy->isDead()) {
 				continue;
+			}
+				
+				
 
 			enemy->goToPlayer(this->player->getPos(), enemies);
 
@@ -138,11 +144,15 @@ void Game::updateFrame()
 	// ================== Hud ================================
 	
 	this->renderWindow->setView(this->renderWindow->getDefaultView());
-
+	
 	// atualiza o hud
 	this->renderWindow->draw(this->hud->updateHpBar(this->player));
+	this->renderWindow->draw(this->hud->updateLevel(this->player));
+	this->renderWindow->draw(this->hud->updateXpBar(this->player));
 
 	this->renderWindow->draw(this->hud->updateFPS());
+
+	
 
 	this->renderWindow->setView(this->view);
 
@@ -185,6 +195,9 @@ void Game::startGame()
 	this->renderWindow->setView(this->view);
 
 	this->gameClock.restart();
+
+	
+	
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?
