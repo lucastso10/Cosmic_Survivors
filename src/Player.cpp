@@ -64,5 +64,29 @@ void Player::animate()
 
 void Player::levelUp()
 {	
+	this->level++;
+	this->setXp(0);
+}
+
+int Player::getXp() {
+	return this->xp;
+}
+
+int Player::setXp(int xp){
+	this->xp = xp;
+	return this->xp;
+}
+
+void Player::incrementXp(int xpDrop) {
+	if (getXp() == 100) {
+		levelUp();
+	}
+	else {
+		this->xp += xpDrop;
+	}
+}
+
+int Player::getLevel() {
+	return this->level;
 }
 
