@@ -45,11 +45,15 @@ Player* Game::getPlayer()
 
 void Game::PlayerAttack(sf::Vector2f direction)
 {
+	for (auto& bullet : this->bullets) {
+		if (!(bullet->isDead()))
+			continue;
 
-	Bullet* b = new Bullet(this->weapon->getBulletTexture(), this->player->getPos());
-	b->setDirection(direction);
-	this->bullets.push_back(b);
-
+		bullet->setHealth(1.f);
+		bullet->setPos(this->player->getPos());
+		bullet->setDirection(direction);
+		break;
+	}
 }
 
 // todos o que vai ser desenhado na tela precisa acontecer aqui
@@ -86,19 +90,27 @@ void Game::updateFrame()
 	// ================== Bullets ================================
 
 	// desenha os tiros na tela
-	if (!bullets.empty()) {
-		for (auto& bullet : this->bullets) {
-			bullet->moveDirection();
+	for (auto& bullet : this->bullets) {
+		if (bullet->isDead())
+			continue;
+		bullet->moveDirection();
 				
-			// verifica se o tiro acertou algum inimigo
-			for (auto& enemy : this->enemies) {
-				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
-					enemy->setHealth(enemy->getHealth() - this->weapon->calculateDamage()); // seria bom uma função para diminuir a vida de uma entidade
+		// verifica se o tiro acertou algum inimigo
+		for (auto& enemy : this->enemies) {
+			if (enemy->isDead())
+				continue;
+
+			if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
+				bullet->enemiesHit++;	
+				enemy->setHealth(enemy->getHealth() - this->weapon->calculateDamage()); // seria bom uma função para diminuir a vida de uma entidade
+				if (this->weapon->getPierce() <= bullet->enemiesHit){
+					bullet->setHealth(0.f);
+					bullet->enemiesHit = 0;
 				}
 			}
 
-			this->renderWindow->draw(bullet->getSprite());
 		}
+		this->renderWindow->draw(bullet->getSprite());
 	}
 
 	// ================== Enemy ================================
@@ -113,6 +125,7 @@ void Game::updateFrame()
 			enemy->spawn(this->renderWindow);
 			break;
 		}
+		this->enemySpawnClock.restart();
 	}
 
 	// desenha os inimigos na tela
@@ -177,6 +190,11 @@ void Game::startGame()
 	sf::Texture* bullet = new sf::Texture;
 	bullet->loadFromFile("../images/Bullet/Simple_Bullet.png");
 	this->weapon = new Weapon(bullet);
+	
+	for (int i = 0; i < 100; i++) {
+		Bullet* b = new Bullet(this->weapon->getBulletTexture());
+		this->bullets.push_back(b);
+	};
 
 	this->attackTimer->restart();
 

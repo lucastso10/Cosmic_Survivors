@@ -10,8 +10,10 @@ private:
 	sf::Vector2f direction;
 
 public:
-	Bullet(sf::Texture* texture, sf::Vector2f start_pos);
+	Bullet(sf::Texture* texture);
 	~Bullet();
+
+	int enemiesHit;
 
 	//void checarHit();
 	void setDirection(sf::Vector2f ref_pos);

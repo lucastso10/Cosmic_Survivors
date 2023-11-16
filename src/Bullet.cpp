@@ -1,20 +1,19 @@
 #include "Bullet.h"
 #include <math.h>
 
-Bullet::Bullet(sf::Texture* texture, sf::Vector2f start_pos)
+Bullet::Bullet(sf::Texture* texture)
 {
 	this->animationClock.restart();
 
-	// A extura da arma pode ser só uma que é 
-	// carregada várias vezes por várias instacias 
-	// de Bullet
 	this->setTexture(texture);
+	this->enemiesHit = 0;
+
+	this->health = 0.f;
 
 	sf::Sprite sprite;
 	sprite.setTexture(*texture);
 	this->setSpeed(45.0f);
 	this->setSprite(sprite);
-	this->setPos(start_pos);
 	this->setTextureSpriteRect(sf::IntRect(0, 0, 16, 16)); // assume que utiliza uma textura 16x16 do pacote de textura all fire bullet pixels
 	this->setScale(sf::Vector2f(2, 2));
 	this->adjustOrigin();
