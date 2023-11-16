@@ -123,13 +123,14 @@ void Game::updateFrame()
 	// ================== Enemy ================================
 	
 	// determina se precisa spawnar um novo inimigo
-	if (this->enemySpawnClock.getElapsedTime().asSeconds() >= this->enemySpawnRate)
+	if (this->enemySpawnClock.getElapsedTime().asSeconds() >= this->enemySpawnRate - (this->getGameTime() / 200))
 	{
 		for (auto& enemy : this->enemies) {
 			if (!(enemy->isDead())) 
 				continue;
 
 			enemy->spawn(this->renderWindow);
+			enemy->setHealth(enemy->getHealth() + (this->getGameTime() / 60));
 			break;
 		}
 		this->enemySpawnClock.restart();
@@ -219,6 +220,10 @@ void Game::startGame()
 // talvez criar um booleano para checar se o jogo está pausado?
 void Game::pauseGame()
 {
+	this->gameClock.restart();
+	// quando o jogo for continuar precisa fazer
+	// this->recordedTime += gameClock.getElapsedTime();
+	// this->gameClock.restart();
 }
 
 // precisa limpar a memoria antes

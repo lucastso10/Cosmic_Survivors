@@ -59,7 +59,7 @@ bool Enemy::checkCollision(const Enemy& enemy)
 
 void Enemy::spawn(sf::RenderWindow* window)
 {
-	this->health = 20.0; // isso precisa mudar com o tempo
+	this->health = 20.0;
 	int random = rand();
 	float x, y;
 
