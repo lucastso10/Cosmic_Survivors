@@ -113,6 +113,10 @@ void Game::updateFrame()
 			}
 
 		}
+	      
+		if (!(bullet->isOnScreen(this->renderWindow)))
+			bullet->setHealth(0.f);
+
 		this->renderWindow->draw(bullet->getSprite());
 	}
 
