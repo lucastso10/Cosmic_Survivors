@@ -45,11 +45,15 @@ Player* Game::getPlayer()
 
 void Game::PlayerAttack(sf::Vector2f direction)
 {
+	for (auto& bullet : this->bullets) {
+		if (!(bullet->isDead()))
+			continue;
 
-	Bullet* b = new Bullet(this->weapon->getBulletTexture(), this->player->getPos());
-	b->setDirection(direction);
-	this->bullets.push_back(b);
-
+		bullet->setHealth(1.f);
+		bullet->setPos(this->player->getPos());
+		bullet->setDirection(direction);
+		break;
+	}
 }
 
 // todos o que vai ser desenhado na tela precisa acontecer aqui
@@ -86,40 +90,56 @@ void Game::updateFrame()
 	// ================== Bullets ================================
 
 	// desenha os tiros na tela
-	if (!bullets.empty()) {
-		for (auto& bullet : this->bullets) {
-			bullet->moveDirection();
+	for (auto& bullet : this->bullets) {
+		if (bullet->isDead())
+			continue;
+		bullet->moveDirection();
 				
-			// verifica se o tiro acertou algum inimigo
-			for (auto& enemy : this->enemies) {
-				if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
-					enemy->setHealth(enemy->getHealth() - this->weapon->calculateDamage()); // seria bom uma função para diminuir a vida de uma entidade
+		// verifica se o tiro acertou algum inimigo
+		for (auto& enemy : this->enemies) {
+			if (enemy->isDead())
+				continue;
+
+			if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
+				bullet->enemiesHit++;	
+				enemy->setHealth(enemy->getHealth() - this->weapon->calculateDamage()); // seria bom uma função para diminuir a vida de uma entidade
+				if (this->weapon->getPierce() <= bullet->enemiesHit){
+					bullet->setHealth(0.f);
+					bullet->enemiesHit = 0;
 				}
+
+				if (enemy->isDead())
+					this->player->incrementXp(1);
 			}
 
-			this->renderWindow->draw(bullet->getSprite());
 		}
+	      
+		if (!(bullet->isOnScreen(this->renderWindow)))
+			bullet->setHealth(0.f);
+
+		this->renderWindow->draw(bullet->getSprite());
 	}
 
 	// ================== Enemy ================================
 	
 	// determina se precisa spawnar um novo inimigo
-	if (this->enemySpawnClock.getElapsedTime().asSeconds() >= this->enemySpawnRate)
+	if (this->enemySpawnClock.getElapsedTime().asSeconds() >= this->enemySpawnRate - (this->getGameTime() / 200))
 	{
 		for (auto& enemy : this->enemies) {
-			if (!(enemy->isDead()))
+			if (!(enemy->isDead())) 
 				continue;
 
 			enemy->spawn(this->renderWindow);
+			enemy->setHealth(enemy->getHealth() + (this->getGameTime() / 60));
 			break;
 		}
+		this->enemySpawnClock.restart();
 	}
-
+	
 	// desenha os inimigos na tela
 	if (!enemies.empty()) {
 		for (auto& enemy : this->enemies) {
-			// deleta a instancia de inimigo da memoria
-			if (enemy->isDead())
+			if (enemy->isDead()) 
 				continue;
 
 			enemy->goToPlayer(this->player->getPos(), enemies);
@@ -129,7 +149,6 @@ void Game::updateFrame()
 				enemy->attack(this->player);
 			}
 
-			
 			this->renderWindow->draw(enemy->getSprite());
 		}
 	}
@@ -137,11 +156,15 @@ void Game::updateFrame()
 	// ================== Hud ================================
 	
 	this->renderWindow->setView(this->renderWindow->getDefaultView());
-
+	
 	// atualiza o hud
 	this->renderWindow->draw(this->hud->updateHpBar(this->player));
+	this->renderWindow->draw(this->hud->updateLevel(this->player));
+	this->renderWindow->draw(this->hud->updateXpBar(this->player));
 
 	this->renderWindow->draw(this->hud->updateFPS());
+
+	
 
 	this->renderWindow->setView(this->view);
 
@@ -177,6 +200,11 @@ void Game::startGame()
 	sf::Texture* bullet = new sf::Texture;
 	bullet->loadFromFile("../images/Bullet/Simple_Bullet.png");
 	this->weapon = new Weapon(bullet);
+	
+	for (int i = 0; i < 100; i++) {
+		Bullet* b = new Bullet(this->weapon->getBulletTexture());
+		this->bullets.push_back(b);
+	};
 
 	this->attackTimer->restart();
 
@@ -184,11 +212,18 @@ void Game::startGame()
 	this->renderWindow->setView(this->view);
 
 	this->gameClock.restart();
+
+	
+	
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?
 void Game::pauseGame()
 {
+	this->gameClock.restart();
+	// quando o jogo for continuar precisa fazer
+	// this->recordedTime += gameClock.getElapsedTime();
+	// this->gameClock.restart();
 }
 
 // precisa limpar a memoria antes

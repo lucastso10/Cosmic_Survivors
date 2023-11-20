@@ -24,6 +24,16 @@ public:
 	void animate();
 
 	void levelUp();
+
+	int getXp();
+
+	int setXp(int xp);
+
+	int setXp();
+
+	void incrementXp(int xpDrop);
+
+	int getLevel();
 	
 	bool checkAttackTimer(sf::Clock* attackTimer);
 };

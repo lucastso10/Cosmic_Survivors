@@ -9,10 +9,10 @@ Entity::~Entity()
 
 bool Entity::isOnScreen(const sf::RenderWindow* screen)
 {
-	if (screen->getSize().x <= sprite.getGlobalBounds().left || 0 >= sprite.getGlobalBounds().left + sprite.getTextureRect().width)
+	if (screen->mapPixelToCoords(sf::Vector2i(screen->getSize())).x <= sprite.getGlobalBounds().left || screen->mapPixelToCoords(sf::Vector2i(0,0)).x >= sprite.getGlobalBounds().left + sprite.getTextureRect().width)
 		return false;
 
-	if (screen->getSize().y <= sprite.getGlobalBounds().top || 0 >= sprite.getGlobalBounds().top + sprite.getTextureRect().height)
+	if (screen->mapPixelToCoords(sf::Vector2i(screen->getSize())).y <= sprite.getGlobalBounds().top || screen->mapPixelToCoords(sf::Vector2i(0,0)).y >= sprite.getGlobalBounds().top + sprite.getTextureRect().height)
 		return false;
 		
 	return true;
