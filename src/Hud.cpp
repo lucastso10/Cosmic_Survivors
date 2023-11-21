@@ -99,3 +99,4 @@ sf::Text Hud::updateLevel(Player* player) {
 	level.setString(std::to_string(player->getLevel()));
 	return level;
 }
+

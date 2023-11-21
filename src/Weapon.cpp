@@ -4,7 +4,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 {
 	// esses status podem trocar dependendo do tipo de arma
 	// que o usuario escolher
-	this->baseDamage = 100.0;
+	this->baseDamage = 10.0;
 	this->armorPenetration = 0;
 	this->criticalChance = 0;
 	this->criticalDamage = 0;
@@ -12,6 +12,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 	this->pierce = 1;
 
 	this->defaultBulletTexture = defaultBulletTexture;
+
 
 }
 
@@ -49,3 +50,4 @@ sf::Texture* Weapon::getBulletTexture()
 {
 	return this->defaultBulletTexture;
 }
+

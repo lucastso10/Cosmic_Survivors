@@ -1,5 +1,7 @@
 #include "Bullet.h"
 #include <math.h>
+#include <sstream>
+#include <iomanip>
 
 Bullet::Bullet(sf::Texture* texture)
 {
@@ -17,6 +19,12 @@ Bullet::Bullet(sf::Texture* texture)
 	this->setTextureSpriteRect(sf::IntRect(0, 0, 16, 16)); // assume que utiliza uma textura 16x16 do pacote de textura all fire bullet pixels
 	this->setScale(sf::Vector2f(2, 2));
 	this->adjustOrigin();
+
+	font.loadFromFile("../fonte/kenneypixel.ttf");
+	damageNumber.setFont(this->font);
+	damageNumber.setFillColor(sf::Color::Magenta);
+	damageNumber.setOutlineColor(sf::Color::White);
+	damageNumber.setOutlineThickness(1.f);
 }
 
 Bullet::~Bullet()
@@ -46,4 +54,10 @@ void Bullet::moveDirection()
 
 	this->setTextureSpriteRect(newRect);
 	this->move(this->direction);
+}
+
+sf::Text Bullet::drawDamage(int damage, sf::Vector2f position) {
+	damageNumber.setPosition(position);
+	damageNumber.setString(std::to_string(damage));
+	return damageNumber;
 }
