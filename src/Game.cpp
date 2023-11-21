@@ -188,7 +188,7 @@ void Game::startGame()
 {
 	this->inMenu = false;
 
-	Player* p = new Player(sf::Vector2f(680.0f, 375.0f));
+	Player* p = new Player(sf::Vector2f(2040.0f, 1125.0f));
 	this->player = p;
 
 	Map* m = new Map();
