@@ -11,6 +11,7 @@ protected:
 	float health = 0.0;
 	float armor = 0.0;
 	float speed = 0.0;
+	
 	sf::Texture* texture;
 	sf::Sprite sprite;
 	sf::IntRect spriteTextureRect;
