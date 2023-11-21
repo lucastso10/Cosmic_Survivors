@@ -9,6 +9,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 	this->criticalChance = 0;
 	this->criticalDamage = 0;
 	this->attackSpeed = sf::seconds(1.0f);
+	this->pierce = 1;
 
 	this->defaultBulletTexture = defaultBulletTexture;
 
@@ -16,6 +17,16 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 
 Weapon::~Weapon()
 {
+}
+
+int Weapon::getPierce()
+{
+  return this->pierce;
+}
+
+void Weapon::setPierce(int p)
+{
+  this->pierce = p;
 }
 
 float Weapon::calculateDamage()
