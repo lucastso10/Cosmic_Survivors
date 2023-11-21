@@ -2,7 +2,7 @@
 #include <math.h>
 
 Enemy::Enemy(sf::Texture* enemyTexture) {
-	this->damage = 0.001;
+	this->damage = 0.1;
 	this->armor = 0.0;
 	this->health = 0.0;
 
