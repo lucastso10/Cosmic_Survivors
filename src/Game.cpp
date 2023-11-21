@@ -17,6 +17,7 @@ Game::Game()
 	this->map = nullptr;
 
 	this->enemySpawnRate = 3.f;	
+	MenuType = 1;
 }
 
 Game::~Game()

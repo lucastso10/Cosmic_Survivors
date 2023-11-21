@@ -21,7 +21,8 @@ public:
 
 	void eventHandler();
 	void eventHandlerGame();
-	void eventHandlerMenu();
+	void eventHandlerMainMenu();
+	void eventHandlerOptionMenu();
 	void interpretKey();
 };
 
