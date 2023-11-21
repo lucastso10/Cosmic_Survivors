@@ -1,16 +1,24 @@
 #include "Map.h"
 
-Map::Map(std::string arquivo)
+Map::Map()
 {
 	sf::Texture* texture = new sf::Texture;
 	sf::Sprite sprite;
-	texture->loadFromFile(arquivo);
+	texture->loadFromFile("/home/bolofofo/Documents/tileset.png");
 	sprite.setTexture(*texture);
+	this->mapTexture = texture;
+	this->mapSprite = sprite;
 
-	this->texture = texture;
-	this->sprite = sprite;
+	this->mapSprite.setPosition(0,0);
+	
+	sf::Texture* backtexture = new sf::Texture;
+	sf::Sprite backsprite;
+	backtexture->loadFromFile("/home/bolofofo/Documents/background.png");
+	backsprite.setTexture(*backtexture);
+	this->backgroundTexture = backtexture;
+	this->backgroundSprite = backsprite;
 
-	this->sprite.setPosition(-2040,-1125);
+	this->backgroundSprite.setPosition(0,0);
 }
 
 Map::~Map()
@@ -19,5 +27,10 @@ Map::~Map()
 
 void Map::drawMap(sf::RenderWindow* render)
 {
-	render->draw(this->sprite);
+	render->draw(this->mapSprite);
+}
+
+void Map::drawBackground(sf::RenderWindow* render)
+{
+	render->draw(this->backgroundSprite);
 }

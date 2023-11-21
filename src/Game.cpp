@@ -62,7 +62,13 @@ void Game::updateFrame()
 
 	this->renderWindow->clear(sf::Color::Black);
 	// ================== Map ================================
+	
+	this->renderWindow->setView(this->renderWindow->getDefaultView());
+	this->map->drawBackground(this->renderWindow);
+	this->renderWindow->setView(this->view);
+
 	this->map->drawMap(this->renderWindow);
+
 
 	// ================== Player ================================
 	
@@ -182,14 +188,14 @@ void Game::startGame()
 {
 	this->inMenu = false;
 
-	Player* p = new Player("../images/Player/move.png", sf::Vector2f(680.0f, 375.0f));
+	Player* p = new Player(sf::Vector2f(680.0f, 375.0f));
 	this->player = p;
 
-	Map* m = new Map("../images/tileset.png");
+	Map* m = new Map();
 	this->map = m;
 
 	sf::Texture* enemyTexture = new sf::Texture;
-	enemyTexture->loadFromFile("../images/enemy.png");
+	enemyTexture->loadFromFile("../images/enemy.png"); // é melhor carregar a textura aqui fora pq eles todos usam a mesma textura
 	for (int i = 0; i < 100; i++) {
 		Enemy* e = new Enemy(enemyTexture);
 		enemies.push_back(e);
@@ -226,6 +232,7 @@ void Game::pauseGame()
 }
 
 // precisa limpar a memoria antes
+// não precisa não ótario o programa vai encerra
 void Game::quitGame()
 {
 	this->running = false;
