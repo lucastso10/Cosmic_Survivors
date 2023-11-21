@@ -16,7 +16,7 @@ private:
 
 
 public:
-	Player(std::string file, sf::Vector2f start_pos);
+	Player(sf::Vector2f start_pos);
 	~Player();
 
 	void setWalking(bool moving);
