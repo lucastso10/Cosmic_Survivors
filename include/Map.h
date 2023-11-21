@@ -8,15 +8,19 @@ class Map
 {
 private:
 	// tamanho do mapa será o tamanho da tela
-	sf::Texture* texture;
-	sf::Sprite sprite;
+	sf::Texture* mapTexture;
+	sf::Sprite mapSprite;
+	
+	sf::Texture* backgroundTexture;
+	sf::Sprite backgroundSprite;
 
 public:
 
-	Map(std::string arquivo);
+	Map();
 	~Map();
 
 	void drawMap(sf::RenderWindow* render);
+	void drawBackground(sf::RenderWindow* render);
 };
 
 #endif
