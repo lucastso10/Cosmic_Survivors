@@ -3,7 +3,6 @@
 
 Enemy::Enemy(sf::Texture* enemyTexture) {
 	this->damage = 0.001;
-	this->armor = 0.0;
 	this->health = 0.0;
 
 	sf::Sprite enemySprite;
@@ -34,10 +33,9 @@ void Enemy::goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemi
 	float distanceToPlayer = sqrt(enemyToPlayer.x * enemyToPlayer.x + enemyToPlayer.y * enemyToPlayer.y);
 
 	sf::Vector2f movementDirection = enemyToPlayer / distanceToPlayer;
-	this->move(movementDirection);
+	this->move(movementDirection * this->getSpeed());
 
 	//Checa colisao de inimigos NAO FUNCIONA LEGAL
-
 	/*
 	for (auto& enemy : enemies) {
 		if (this->getSprite().getGlobalBounds() == enemy->getSprite().getGlobalBounds())

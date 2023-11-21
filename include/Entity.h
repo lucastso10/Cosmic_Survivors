@@ -9,8 +9,7 @@ class Entity
 {
 protected:
 	float health = 0.0;
-	float armor = 0.0;
-	float speed = 0.0;
+	float speed = 0.1;
 	
 	sf::Texture* texture;
 	sf::Sprite sprite;
@@ -41,11 +40,9 @@ public:
 	//sf::FloatRect getBounds(sf::Sprite sprite);
 
 	float getHealth();
-	float getArmor();
 	float getSpeed();
 
 	void setHealth(float health);
-	void setArmor(float armor);
 	void setSpeed(float Speed);
 
 	void setScale(sf::Vector2f scale);
