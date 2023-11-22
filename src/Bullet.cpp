@@ -1,7 +1,6 @@
 #include "Bullet.h"
 #include <math.h>
-#include <sstream>
-#include <iomanip>
+#include <iostream>
 
 Bullet::Bullet(sf::Texture* texture)
 {
@@ -23,8 +22,9 @@ Bullet::Bullet(sf::Texture* texture)
 	font.loadFromFile("../fonte/kenneypixel.ttf");
 	damageNumber.setFont(this->font);
 	damageNumber.setFillColor(sf::Color::Magenta);
-	damageNumber.setOutlineColor(sf::Color::White);
+	damageNumber.setOutlineColor(sf::Color::Black);
 	damageNumber.setOutlineThickness(1.f);
+	damageNumber.setOrigin(this->sprite.getLocalBounds().getSize() / 2.0f);
 }
 
 Bullet::~Bullet()
@@ -56,8 +56,27 @@ void Bullet::moveDirection()
 	this->move(this->direction);
 }
 
-sf::Text Bullet::drawDamage(int damage, sf::Vector2f position) {
-	damageNumber.setPosition(position);
+sf::Text Bullet::drawDamage(int damage, bool crit) {	
+	if (crit)
+		damageNumber.setFillColor(sf::Color::Red);
+	else
+		damageNumber.setFillColor(sf::Color::Magenta);
+	damageNumber.setCharacterSize(damage * 3);
+	damageNumber.setPosition(this->getPos());
 	damageNumber.setString(std::to_string(damage));
+	this->textClock.restart();
+	this->drawingText = true;
 	return damageNumber;
+}
+
+sf::Text Bullet::drawDamage() {	
+	if (255 - this->textClock.getElapsedTime().asMilliseconds() <= 100)
+		this->drawingText = false;
+	return damageNumber;
+}
+
+
+bool Bullet::getDrawingText()
+{
+	return this->drawingText;
 }
