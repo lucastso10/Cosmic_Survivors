@@ -16,8 +16,11 @@ public:
 	void setPierce(int p);
 
 	bool checkAttackTimer(sf::Clock* attackTimer);
+	
 
 	sf::Texture* getBulletTexture();
+
+	
 
 private:
 	float baseDamage;
@@ -29,7 +32,7 @@ private:
 
 	sf::Texture* defaultBulletTexture;
 	
-
+	
 };
 
 #endif

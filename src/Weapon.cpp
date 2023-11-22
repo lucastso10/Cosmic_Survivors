@@ -12,6 +12,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 
 	this->defaultBulletTexture = defaultBulletTexture;
 
+
 }
 
 Weapon::~Weapon()
@@ -55,3 +56,4 @@ sf::Texture* Weapon::getBulletTexture()
 {
 	return this->defaultBulletTexture;
 }
+
