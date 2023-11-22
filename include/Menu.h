@@ -20,9 +20,13 @@ class Menu {
 	sf::Sprite* option_bg;
 
 	vector<const char*> options_main_menu;
-	vector<sf::Vector2f> coords;
-	vector<sf::Text> texts;
-	vector<size_t> sizes;
+	vector<const char*> options_option_menu;
+	vector<sf::Vector2f> main_menu_coords;
+	vector<sf::Vector2f> option_menu_coords;
+	vector<sf::Text> main_menu_texts;
+	vector<sf::Text> option_menu_texts;
+	vector<size_t> main_menu_sizes;
+	vector<size_t> option_menu_sizes;
 
 protected:
 	void set_values();

@@ -60,8 +60,11 @@ void Controller::eventHandlerOptionMenu() {
 		switch (this->event.type) {
 			case sf::Event::MouseButtonReleased:
 				if (event.mouseButton.button == sf::Mouse::Left) {
-					if (event.mouseButton.x >= 40 && event.mouseButton.x <= 240 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140) {
+					if (event.mouseButton.x >= 40 && event.mouseButton.x <= 290 && event.mouseButton.y >= 40 && event.mouseButton.y <= 100) {
 						menu->run_main_menu();
+					}
+					if (event.mouseButton.x >= 1070 && event.mouseButton.x <= 1320 && event.mouseButton.y >= 40 && event.mouseButton.y <= 100) {
+						this->game->quitGame();
 					}
 				}
 		}
