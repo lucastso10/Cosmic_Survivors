@@ -10,7 +10,6 @@ Menu::Menu(Game *game) {
 }
 
 Menu::~Menu() {
-	delete winclose;
 	delete font;
 	delete image;
 	delete bg;

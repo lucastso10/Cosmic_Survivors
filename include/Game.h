@@ -19,6 +19,7 @@ private:
 	Player* player;
 	Weapon* weapon;
 	std::vector<Enemy*> enemies;
+	Enemy* boss;
 	std::vector<Bullet*> bullets;
 	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
 	bool inMenu; // Checa se está em algum menu

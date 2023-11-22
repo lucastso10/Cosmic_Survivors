@@ -13,7 +13,6 @@ class Menu {
 	bool pressed, theselect;
 	Game* game;
 	
-	sf::RectangleShape* winclose;
 	sf::Font* font;
 	sf::Texture* image;
 	sf::Sprite* bg;
