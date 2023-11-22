@@ -22,7 +22,10 @@ int main() {
     controller.eventHandler();
 
     if (game.isInMenu()) { // esse if pode ir dentro de updateFrame
-        menu.run_menu();
+        if (game.MenuType == 1)
+            menu.run_main_menu();
+        else if (game.MenuType == 2)
+            menu.run_option_menu();
     }
     else{
 	game.updateFrame();

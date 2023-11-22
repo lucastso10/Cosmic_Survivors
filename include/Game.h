@@ -65,7 +65,7 @@ public:
 	void pauseGame();
 	void quitGame();
 	bool isRunning();
-
+	int MenuType; // Menu type tem o valor 1 quando no menu principal, 2 no menu de pausa e 3 no menu de upgrades
 	float getGameTime();
 
 	

@@ -8,7 +8,7 @@ Game::Game()
 	this->renderWindow = new sf::RenderWindow(sf::VideoMode(1360, 750), "Wipe Out!");
 	this->renderWindow->setFramerateLimit(200);
 
-	this->player = nullptr; // o jogador só é carregado quando o jogo inicia
+	this->player = nullptr; // o jogador sÃ³ Ã© carregado quando o jogo inicia
 	this->running = true;
 	this->inMenu = true;
 	this->attackTimer = new sf::Clock;
@@ -16,6 +16,10 @@ Game::Game()
 	this->weapon = nullptr;
 	this->map = nullptr;
 
+  this->enemySpawnRate = 3.f; //3.f	
+  
+	MenuType = 1;
+  
 	this->shootSoundBuffer.loadFromFile("../sounds/normal_shot.wav");
 	this->shootSound.setBuffer(this->shootSoundBuffer);
 	this->shootSound.setVolume(60.f);
@@ -32,8 +36,6 @@ Game::Game()
 	this->music.openFromFile("../sounds/music_level.wav");
 	this->music.setLoop(true);
 	this->music.setVolume(40.f);
-
-	this->enemySpawnRate = 3.f; //3.f	
 }
 
 Game::~Game()
@@ -90,16 +92,16 @@ void Game::updateFrame()
 
 	// ================== Player ================================
 	
-	// animação do player
+	// animaÃ§Ã£o do player
 	this->player->animate();
 	
-	// dependendo da posição do mouse a sprite inverte
+	// dependendo da posiÃ§Ã£o do mouse a sprite inverte
 	if (this->player->getSprite().getScale().x < 0 && this->mouse.getPosition(*(this->renderWindow)).x > this->renderWindow->getSize().x / 2)
 		this->player->flip();
 	else if (this->player->getSprite().getScale().x > 0 && this->mouse.getPosition(*(this->renderWindow)).x < this->renderWindow->getSize().x / 2)
 		this->player->flip();
 
-	// verifica se o player atira nesse frame se sim já aloca um nova instância no vetor
+	// verifica se o player atira nesse frame se sim jÃ¡ aloca um nova instÃ¢ncia no vetor
 	if (this->weapon->checkAttackTimer(this->attackTimer)) 
 		this->PlayerAttack(this->renderWindow->mapPixelToCoords(this->mouse.getPosition(*(this->renderWindow))));
 
@@ -146,7 +148,7 @@ void Game::updateFrame()
 
 		}
 
-		// repetição descarada e desnecessaria do código mas a gente precisa bota pra roda pra amanhã né
+		// repetiÃ§Ã£o descarada e desnecessaria do cÃ³digo mas a gente precisa bota pra roda pra amanhÃ£ nÃ©
 		if(!(this->boss->isDead())){ // se tiver um boss roda a mesma coisa dos outros
 			if (bullet->getSprite().getGlobalBounds().intersects(boss->getSprite().getGlobalBounds())) {
 				bullet->enemiesHit++;
@@ -259,7 +261,7 @@ void Game::startGame()
 	this->map = m;
 
 	sf::Texture* enemyTexture = new sf::Texture;
-	enemyTexture->loadFromFile("../images/enemies/enemy.png"); // é melhor carregar a textura aqui fora pq eles todos usam a mesma textura
+	enemyTexture->loadFromFile("../images/enemies/enemy.png"); // Ã© melhor carregar a textura aqui fora pq eles todos usam a mesma textura
 	for (int i = 0; i < 1000; i++) {
 		Enemy* e = new Enemy(enemyTexture, false);
 		enemies.push_back(e);
@@ -291,7 +293,7 @@ void Game::startGame()
 	this->music.play();
 }
 
-// talvez criar um booleano para checar se o jogo está pausado?
+// talvez criar um booleano para checar se o jogo estÃ¡ pausado?
 void Game::pauseGame()
 {
 	this->gameClock.restart();
@@ -301,7 +303,7 @@ void Game::pauseGame()
 }
 
 // precisa limpar a memoria antes
-// não precisa não ótario o programa vai encerra
+// nÃ£o precisa nÃ£o Ã³tario o programa vai encerra
 void Game::quitGame()
 {
 	this->running = false;
