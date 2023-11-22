@@ -4,7 +4,7 @@ Map::Map()
 {
 	sf::Texture* texture = new sf::Texture;
 	sf::Sprite sprite;
-	texture->loadFromFile("/home/bolofofo/Documents/tileset.png");
+	texture->loadFromFile("../images/map/tileset.png");
 	sprite.setTexture(*texture);
 	this->mapTexture = texture;
 	this->mapSprite = sprite;
@@ -13,7 +13,7 @@ Map::Map()
 	
 	sf::Texture* backtexture = new sf::Texture;
 	sf::Sprite backsprite;
-	backtexture->loadFromFile("/home/bolofofo/Documents/background.png");
+	backtexture->loadFromFile("../images/map/background.png");
 	backsprite.setTexture(*backtexture);
 	this->backgroundTexture = backtexture;
 	this->backgroundSprite = backsprite;

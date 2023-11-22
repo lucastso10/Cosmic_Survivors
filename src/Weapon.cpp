@@ -5,9 +5,8 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 	// esses status podem trocar dependendo do tipo de arma
 	// que o usuario escolher
 	this->baseDamage = 10.0;
-	this->armorPenetration = 0;
-	this->criticalChance = 0;
-	this->criticalDamage = 0;
+	this->criticalChance = 0; // número em porcentagem por exemplo 25,5 pra 25,5% de chance
+	this->criticalDamage = 2;
 	this->attackSpeed = sf::seconds(1.0f);
 	this->pierce = 1;
 
@@ -32,6 +31,13 @@ void Weapon::setPierce(int p)
 
 float Weapon::calculateDamage()
 {
+	int random = rand();
+
+	random = (random % 100) + 1;
+
+	if (float(random) >= this->criticalChance)
+		return this->baseDamage * this->criticalDamage;
+
 	return this->baseDamage;
 }
 
