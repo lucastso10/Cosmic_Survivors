@@ -16,7 +16,13 @@ Game::Game()
 	this->weapon = nullptr;
 	this->map = nullptr;
 
-	this->enemySpawnRate = 3.f;	
+	this->shootSoundBuffer.loadFromFile("../sounds/pewpew_11.wav");
+	this->shootSound.setBuffer(this->shootSoundBuffer);
+
+	this->music.openFromFile("../sounds/music_level.wav");
+	this->music.setLoop(true);
+
+	this->enemySpawnRate = 3.f; //3.f	
 }
 
 Game::~Game()
@@ -54,6 +60,7 @@ void Game::PlayerAttack(sf::Vector2f direction)
 		bullet->setDirection(direction);
 		break;
 	}
+	this->shootSound.play();
 }
 
 // todos o que vai ser desenhado na tela precisa acontecer aqui
@@ -119,9 +126,26 @@ void Game::updateFrame()
 				}
 
 				if (enemy->isDead())
-					this->player->incrementXp(1);
+					this->player->incrementXp(10);
 			}
 
+		}
+
+		if(!(this->boss->isDead())){ // se tiver um boss roda a mesma coisa dos outros
+			if (bullet->getSprite().getGlobalBounds().intersects(boss->getSprite().getGlobalBounds())) {
+				bullet->enemiesHit++;
+				int dano = (int)this->weapon->calculateDamage();
+				boss->setHealth(boss->getHealth() - dano);
+				this->renderWindow->draw(bullet->drawDamage(dano, this->weapon->getWasCrit()));
+				if (this->weapon->getPierce() <= bullet->enemiesHit){
+					bullet->setHealth(0.f);
+					bullet->enemiesHit = 0;
+				}
+
+				if (boss->isDead())
+					this->player->incrementXp(50);
+			}
+		
 		}
 	      
 		if (!(bullet->isOnScreen(this->renderWindow)))
@@ -145,22 +169,41 @@ void Game::updateFrame()
 		}
 		this->enemySpawnClock.restart();
 	}
+
+	// determina se o boss vai spawnar
+	if (this->boss->isDead() && (int)this->getGameTime() % 150 == 0){ // boss tem 50% de chance de spawnar a cada 3 mins
+		int random = rand() % 2; 
+		if (random == 0){
+			boss->spawn(this->renderWindow);
+			boss->setHealth(boss->getHealth() + (this->getGameTime() / 60) * 5);
+		}
+	}
+
+	// desenha o boss em cima dos inimigos!!
+	if (!(this->boss->isDead())){
+		boss->goToPlayer(this->player->getPos(), this->renderWindow->mapCoordsToPixel(boss->getPos()), true);
+
+		// verifica se o inimigo chegou perto do player
+		if (boss->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
+			boss->attack(this->player);
+		}
+
+		this->renderWindow->draw(boss->getSprite());
+	}
 	
 	// desenha os inimigos na tela
-	if (!enemies.empty()) {
-		for (auto& enemy : this->enemies) {
-			if (enemy->isDead()) 
-				continue;
+	for (auto& enemy : this->enemies) {
+		if (enemy->isDead()) 
+			continue;
 
-			enemy->goToPlayer(this->player->getPos(), enemies);
+		enemy->goToPlayer(this->player->getPos(), this->renderWindow->mapCoordsToPixel(enemy->getPos()), false);
 
-			// verifica se o inimigo chegou perto do player
-			if (enemy->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
-				enemy->attack(this->player);
-			}
-
-			this->renderWindow->draw(enemy->getSprite());
+		// verifica se o inimigo chegou perto do player
+		if (enemy->getSprite().getGlobalBounds().intersects(this->player->getSprite().getGlobalBounds())) {
+			enemy->attack(this->player);
 		}
+
+		this->renderWindow->draw(enemy->getSprite());
 	}
 
 	// ================== Hud ================================
@@ -196,11 +239,17 @@ void Game::startGame()
 	this->map = m;
 
 	sf::Texture* enemyTexture = new sf::Texture;
-	enemyTexture->loadFromFile("../images/enemy.png"); // é melhor carregar a textura aqui fora pq eles todos usam a mesma textura
-	for (int i = 0; i < 100; i++) {
-		Enemy* e = new Enemy(enemyTexture);
+	enemyTexture->loadFromFile("../images/enemies/enemy.png"); // é melhor carregar a textura aqui fora pq eles todos usam a mesma textura
+	for (int i = 0; i < 1000; i++) {
+		Enemy* e = new Enemy(enemyTexture, false);
 		enemies.push_back(e);
 	}
+
+	sf::Texture* bossTexture = new sf::Texture;
+	bossTexture->loadFromFile("../images/enemies/boss.png");
+	Enemy* e = new Enemy(bossTexture, true);
+	this->boss = e;
+
 
 	// o tipo de bala provavelmente vai trocar com o tipo de arma no futuro
 	sf::Texture* bullet = new sf::Texture;
@@ -219,8 +268,7 @@ void Game::startGame()
 
 	this->gameClock.restart();
 
-	
-	
+	this->music.play();
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?

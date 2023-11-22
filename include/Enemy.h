@@ -9,12 +9,14 @@ class Enemy : public Entity
 private:
 	float damage;
 
+	int side; // 0 = esquerda 1 = direita
+
 public:
-	Enemy(sf::Texture*);
+	Enemy(sf::Texture*, bool);
 	~Enemy();
 
 	void attack(Player* player);
-	void goToPlayer(sf::Vector2f currentPlayerPos, std::vector<Enemy*>& enemies);
+	void goToPlayer(sf::Vector2f currentPlayerPos, sf::Vector2i enemyScreenPos, bool boss);
 	
 	bool checkCollision(const Enemy& enemy);
 	void spawn(sf::RenderWindow* window);

@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Enemy.h"
 #include "Player.h"
@@ -18,6 +19,7 @@ private:
 	Player* player;
 	Weapon* weapon;
 	std::vector<Enemy*> enemies;
+	Enemy* boss;
 	std::vector<Bullet*> bullets;
 	bool running; // se a janela está rodando (talvez outros booleanos como pausado e start seriam legais)
 	bool inMenu; // Checa se está em algum menu
@@ -33,6 +35,10 @@ private:
 
 	sf::Clock gameClock; // esse clock precisa de uma funçao pra ser acessado, pq o player pode pausar o jogo
 	sf::Time recordedTime; // use a função
+	
+	sf::SoundBuffer shootSoundBuffer;
+	sf::Sound shootSound;
+	sf::Music music;
 
 public:
 
