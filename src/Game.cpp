@@ -16,7 +16,13 @@ Game::Game()
 	this->weapon = nullptr;
 	this->map = nullptr;
 
-	this->enemySpawnRate = 3.f;	
+	this->shootSoundBuffer.loadFromFile("../sounds/pewpew_11.wav");
+	this->shootSound.setBuffer(this->shootSoundBuffer);
+
+	this->music.openFromFile("../sounds/music_level.wav");
+	this->music.setLoop(true);
+
+	this->enemySpawnRate = 0.01f; //3.f	
 }
 
 Game::~Game()
@@ -54,6 +60,7 @@ void Game::PlayerAttack(sf::Vector2f direction)
 		bullet->setDirection(direction);
 		break;
 	}
+	this->shootSound.play();
 }
 
 // todos o que vai ser desenhado na tela precisa acontecer aqui
@@ -197,7 +204,7 @@ void Game::startGame()
 
 	sf::Texture* enemyTexture = new sf::Texture;
 	enemyTexture->loadFromFile("../images/enemy.png"); // é melhor carregar a textura aqui fora pq eles todos usam a mesma textura
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 1000; i++) {
 		Enemy* e = new Enemy(enemyTexture);
 		enemies.push_back(e);
 	}
@@ -219,8 +226,7 @@ void Game::startGame()
 
 	this->gameClock.restart();
 
-	
-	
+	this->music.play();
 }
 
 // talvez criar um booleano para checar se o jogo está pausado?

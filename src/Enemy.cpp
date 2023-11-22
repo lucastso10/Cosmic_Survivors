@@ -9,7 +9,7 @@ Enemy::Enemy(sf::Texture* enemyTexture) {
 
 	enemySprite.setTexture(*enemyTexture);
 	enemySprite.setTextureRect(sf::IntRect(10, 4, 12, 22));
-	this->setSpeed(0.5f);
+	this->setSpeed(0.7f); // 0.5f
 	this->setTexture(enemyTexture);
 	this->setSprite(enemySprite);
 	this->setScale(sf::Vector2f(1.5f, 1.5f));

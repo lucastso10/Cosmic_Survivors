@@ -38,10 +38,8 @@ float Weapon::calculateDamage()
 
 	if (float(random) <= this->criticalChance){
 		this->wasCrit = true;
-		std::cout << "critei!!!\n";
 		return this->baseDamage * this->criticalDamage;
 	}
-	std::cout << "não critei :(\n";
 
 	this->wasCrit = false;
 	return this->baseDamage;

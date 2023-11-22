@@ -2,7 +2,6 @@
 using namespace std;
 
 Menu::Menu(Game *game) {
-	winclose = new sf::RectangleShape();
 	font = new sf::Font();
 	image = new sf::Texture();
 	bg = new sf::Sprite();
@@ -38,6 +37,13 @@ void Menu::set_values() {
 		else { texts[i].setColor(sf::Color::Black); }
 		texts[i].setPosition(coords[i]);
 	}
+
+	music.openFromFile("../sounds/Title_screen.wav");
+	music.setLoop(true);
+	music.play();
+
+	buffer.loadFromFile("../sounds/button_click.wav");
+	buttonClick.setBuffer(buffer);
 }
 
 void Menu::draw_all() {
@@ -51,6 +57,16 @@ void Menu::draw_all() {
 
 void Menu::startgame_button() {
 	game->startGame();
+}
+
+void Menu::playButtonClick()
+{
+	buttonClick.play();
+}
+
+void Menu::stopMusic()
+{
+	music.stop();
 }
 
 void Menu::run_menu() {

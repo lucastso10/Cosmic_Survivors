@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Enemy.h"
 #include "Player.h"
@@ -33,6 +34,10 @@ private:
 
 	sf::Clock gameClock; // esse clock precisa de uma funçao pra ser acessado, pq o player pode pausar o jogo
 	sf::Time recordedTime; // use a função
+	
+	sf::SoundBuffer shootSoundBuffer;
+	sf::Sound shootSound;
+	sf::Music music;
 
 public:
 
