@@ -66,16 +66,8 @@ Player* Game::getPlayer()
 
 void Game::PlayerAttack(sf::Vector2f direction)
 {
-	for (auto& bullet : this->bullets) {
-		if (!(bullet->isDead()))
-			continue;
-
-		bullet->setHealth(1.f);
-		bullet->setPos(this->player->getPos());
-		bullet->setDirection(direction);
-		break;
-	}
-	this->shootSound.play();
+	this->weapon->attack(bullets, this->player->getPos(), direction);
+	this->shootSound.play(); 
 }
 
 // todos o que vai ser desenhado na tela precisa acontecer aqui

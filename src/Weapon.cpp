@@ -11,6 +11,8 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 	this->attackSpeed = sf::seconds(1.0f);
 	this->pierce = 1;
 
+	this->type = SHOTGUN;
+
 	this->defaultBulletTexture = defaultBulletTexture;
 	
 	this->wasCrit = false;
@@ -43,6 +45,68 @@ float Weapon::calculateDamage()
 
 	this->wasCrit = false;
 	return this->baseDamage;
+}
+
+void Weapon::attack(std::vector<Bullet*> bullets, sf::Vector2f playerPos, sf::Vector2f mousePos)
+{
+	if (this->type == SIMPLE){
+		for (auto& bullet : bullets) {
+			if (!(bullet->isDead()))
+				continue;
+
+			bullet->setHealth(1.f);
+			bullet->setPos(playerPos);
+			bullet->setDirection(mousePos);
+			break;
+		}
+	} else if (this->type == SHOTGUN){
+		int count = 0;
+		for (auto& bullet : bullets){
+			if (!(bullet->isDead()))
+				continue;
+
+			bullet->setHealth(1.f);
+			bullet->setPos(playerPos);
+			switch (count) {
+				case 0:
+					bullet->setDirection(mousePos - sf::Vector2f(75.f, 75.f));
+					break;
+				case 1:
+					bullet->setDirection(mousePos);
+					break;
+				case 2:
+					bullet->setDirection(mousePos + sf::Vector2f(75.f, 75.f));
+					break;
+			}
+			count++;
+			if (count == 3)
+				break;
+		}
+	} else if (this->type == SPREAD){
+		int count = 0;
+		for (auto& bullet : bullets){
+			if (!(bullet->isDead()))
+				continue;
+
+			bullet->setHealth(1.f);
+			bullet->setPos(playerPos);
+			switch (count) {
+				case 0:
+					bullet->setDirection(mousePos - sf::Vector2f(75.f, 75.f));
+					break;
+				case 1:
+					bullet->setDirection(mousePos);
+					break;
+				case 2:
+					bullet->setDirection(mousePos + sf::Vector2f(75.f, 75.f));
+					break;
+			}
+			count++;
+			if (count == 3)
+				break;
+		}
+
+	}
 }
 
 bool Weapon::getWasCrit()

@@ -21,11 +21,18 @@ public:
 
 	sf::Texture* getBulletTexture();
 
-	
+	void attack(std::vector<Bullet*> bullets, sf::Vector2f playerPos, sf::Vector2f mousePos);
+
+	enum weaponTypes{
+		SIMPLE,
+		SHOTGUN,
+		SPREAD
+	};
+
+	weaponTypes type;
 
 private:
 	float baseDamage;
-	float armorPenetration;
 	float criticalChance;
 	float criticalDamage;
 	int pierce;
