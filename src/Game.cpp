@@ -22,20 +22,22 @@ Game::Game()
   
 	this->shootSoundBuffer.loadFromFile("../sounds/normal_shot.wav");
 	this->shootSound.setBuffer(this->shootSoundBuffer);
-	this->shootSound.setVolume(60.f);
+	this->shootSound.setVolume(50.f);
 
 	this->critSoundBuffer.loadFromFile("../sounds/crit_sound.wav");
 	this->critSound.setBuffer(this->critSoundBuffer);
 
 	this->enemyDiesBuffer.loadFromFile("../sounds/inimigo_morre.wav");
-	this->enemyDies.setBuffer(this->shootSoundBuffer);
+	this->enemyDies.setBuffer(this->enemyDiesBuffer);
+	this->enemyDies.setVolume(100.f);
 
 	this->bossDiesBuffer.loadFromFile("../sounds/boss_morre.wav");
-	this->enemyDies.setBuffer(this->bossDiesBuffer);
+	this->bossDies.setBuffer(this->bossDiesBuffer);
+	this->bossDies.setVolume(100.f);
 
 	this->music.openFromFile("../sounds/music_level.wav");
 	this->music.setLoop(true);
-	this->music.setVolume(40.f);
+	this->music.setVolume(30.f);
 }
 
 Game::~Game()
