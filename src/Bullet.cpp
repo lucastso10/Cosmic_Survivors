@@ -15,7 +15,7 @@ Bullet::Bullet(sf::Texture* texture)
 	sprite.setTexture(*texture);
 	this->setSpeed(45.0f);
 	this->setSprite(sprite);
-	this->setTextureSpriteRect(sf::IntRect(0, 0, 16, 16)); // assume que utiliza uma textura 16x16 do pacote de textura all fire bullet pixels
+	this->setTextureSpriteRect(sf::IntRect(3, 3, 10, 10)); // assume que utiliza uma textura 16x16 do pacote de textura all fire bullet pixels
 	this->setScale(sf::Vector2f(2, 2));
 	this->adjustOrigin();
 
@@ -45,8 +45,8 @@ void Bullet::moveDirection()
 	sf::IntRect newRect = this->getTextureSpriteRect();
 
 	if (this->animationClock.getElapsedTime() >= sf::milliseconds(150)) {
-		if (newRect.left == 48 )
-			newRect.left = 0;
+		if (newRect.left == 51 )
+			newRect.left = 3;
 		else
 			newRect.left += 16;
 		this->animationClock.restart();
