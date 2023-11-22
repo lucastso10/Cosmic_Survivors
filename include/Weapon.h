@@ -12,20 +12,29 @@ public:
 
 	float calculateDamage();
 
+	int getPierce();
+	void setPierce(int p);
+
 	bool checkAttackTimer(sf::Clock* attackTimer);
+	
+	bool getWasCrit();
 
 	sf::Texture* getBulletTexture();
+
+	
 
 private:
 	float baseDamage;
 	float armorPenetration;
 	float criticalChance;
 	float criticalDamage;
+	int pierce;
 	sf::Time attackSpeed;
+	bool wasCrit;
 
 	sf::Texture* defaultBulletTexture;
 	
-
+	
 };
 
 #endif

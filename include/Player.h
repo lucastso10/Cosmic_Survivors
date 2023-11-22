@@ -16,7 +16,7 @@ private:
 
 
 public:
-	Player(std::string file, sf::Vector2f start_pos);
+	Player(sf::Vector2f start_pos);
 	~Player();
 
 	void setWalking(bool moving);
@@ -24,6 +24,16 @@ public:
 	void animate();
 
 	void levelUp();
+
+	int getXp();
+
+	int setXp(int xp);
+
+	int setXp();
+
+	void incrementXp(int xpDrop);
+
+	int getLevel();
 	
 	bool checkAttackTimer(sf::Clock* attackTimer);
 };
