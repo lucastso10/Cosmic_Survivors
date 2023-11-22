@@ -3,6 +3,7 @@
 #define _MENU_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "Game.h"
 using namespace std;
@@ -12,7 +13,6 @@ class Menu {
 	bool pressed, theselect;
 	Game* game;
 	
-	sf::RectangleShape* winclose;
 	sf::Font* font;
 	sf::Texture* image;
 	sf::Texture* image_option;
@@ -28,6 +28,10 @@ class Menu {
 	vector<size_t> main_menu_sizes;
 	vector<size_t> option_menu_sizes;
 
+	sf::Music music;
+	sf::SoundBuffer buffer;
+	sf::Sound buttonClick;
+
 protected:
 	void set_values();
 	void draw_all();
@@ -39,6 +43,8 @@ public:
 	void run_option_menu();
 	void startgame_button();
 	void draw_optionmenu();
+	void playButtonClick();
+	void stopMusic();
 };
 
 #endif

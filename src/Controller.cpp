@@ -36,6 +36,8 @@ void Controller::eventHandlerMainMenu() {
 			case sf::Event::MouseButtonReleased: 
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					if (event.mouseButton.x >= 530 && event.mouseButton.x <= 828 && event.mouseButton.y >= 480 && event.mouseButton.y <= 544) {
+						menu->playButtonClick();
+						menu->stopMusic();
 						menu->startgame_button();
 					}
 					if (event.mouseButton.x >= 602 && event.mouseButton.x <= 757 && event.mouseButton.y >= 689 && event.mouseButton.y <= 721) {

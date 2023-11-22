@@ -24,7 +24,7 @@ set(SOURCES ${source_files})
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE include/)
 
-target_link_libraries("${PROJECT_NAME}" PRIVATE sfml-graphics)
+target_link_libraries("${PROJECT_NAME}" PRIVATE sfml-graphics sfml-audio)
 target_compile_features("${PROJECT_NAME}" PRIVATE cxx_std_17)
 
 if(WIN32)
