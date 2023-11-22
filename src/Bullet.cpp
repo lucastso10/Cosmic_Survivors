@@ -1,7 +1,5 @@
 #include "Bullet.h"
 #include <math.h>
-#include <sstream>
-#include <iomanip>
 
 Bullet::Bullet(sf::Texture* texture)
 {
