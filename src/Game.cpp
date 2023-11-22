@@ -16,11 +16,22 @@ Game::Game()
 	this->weapon = nullptr;
 	this->map = nullptr;
 
-	this->shootSoundBuffer.loadFromFile("../sounds/pewpew_11.wav");
+	this->shootSoundBuffer.loadFromFile("../sounds/normal_shot.wav");
 	this->shootSound.setBuffer(this->shootSoundBuffer);
+	this->shootSound.setVolume(60.f);
+
+	this->critSoundBuffer.loadFromFile("../sounds/crit_sound.wav");
+	this->critSound.setBuffer(this->critSoundBuffer);
+
+	this->enemyDiesBuffer.loadFromFile("../sounds/inimigo_morre.wav");
+	this->enemyDies.setBuffer(this->shootSoundBuffer);
+
+	this->bossDiesBuffer.loadFromFile("../sounds/boss_morre.wav");
+	this->enemyDies.setBuffer(this->bossDiesBuffer);
 
 	this->music.openFromFile("../sounds/music_level.wav");
 	this->music.setLoop(true);
+	this->music.setVolume(40.f);
 
 	this->enemySpawnRate = 3.f; //3.f	
 }
@@ -120,30 +131,39 @@ void Game::updateFrame()
 				int dano = (int)this->weapon->calculateDamage();
 				enemy->setHealth(enemy->getHealth() - dano);
 				this->renderWindow->draw(bullet->drawDamage(dano, this->weapon->getWasCrit()));
+				if (this->weapon->getWasCrit())
+					this->critSound.play();
 				if (this->weapon->getPierce() <= bullet->enemiesHit){
 					bullet->setHealth(0.f);
 					bullet->enemiesHit = 0;
 				}
 
-				if (enemy->isDead())
+				if (enemy->isDead()){
+					this->enemyDies.play();
 					this->player->incrementXp(10);
+				}
 			}
 
 		}
 
+		// repetição descarada e desnecessaria do código mas a gente precisa bota pra roda pra amanhã né
 		if(!(this->boss->isDead())){ // se tiver um boss roda a mesma coisa dos outros
 			if (bullet->getSprite().getGlobalBounds().intersects(boss->getSprite().getGlobalBounds())) {
 				bullet->enemiesHit++;
 				int dano = (int)this->weapon->calculateDamage();
 				boss->setHealth(boss->getHealth() - dano);
 				this->renderWindow->draw(bullet->drawDamage(dano, this->weapon->getWasCrit()));
+				if (this->weapon->getWasCrit())
+					this->critSound.play();
 				if (this->weapon->getPierce() <= bullet->enemiesHit){
 					bullet->setHealth(0.f);
 					bullet->enemiesHit = 0;
 				}
 
-				if (boss->isDead())
+				if (boss->isDead()){
+					this->bossDies.play();
 					this->player->incrementXp(50);
+				}
 			}
 		
 		}
@@ -171,11 +191,11 @@ void Game::updateFrame()
 	}
 
 	// determina se o boss vai spawnar
-	if (this->boss->isDead() && (int)this->getGameTime() % 150 == 0){ // boss tem 50% de chance de spawnar a cada 3 mins
+	if (this->boss->isDead() && (int)this->getGameTime() % 150 == 0 && (int)this->getGameTime() != 0){ // boss tem 50% de chance de spawnar a cada 3 mins
 		int random = rand() % 2; 
 		if (random == 0){
 			boss->spawn(this->renderWindow);
-			boss->setHealth(boss->getHealth() + (this->getGameTime() / 60) * 5);
+			boss->setHealth(200 + (this->getGameTime() / 60) * 5);
 		}
 	}
 

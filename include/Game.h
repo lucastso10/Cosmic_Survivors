@@ -36,9 +36,19 @@ private:
 	sf::Clock gameClock; // esse clock precisa de uma funçao pra ser acessado, pq o player pode pausar o jogo
 	sf::Time recordedTime; // use a função
 	
+	sf::Music music;
+
 	sf::SoundBuffer shootSoundBuffer;
 	sf::Sound shootSound;
-	sf::Music music;
+
+	sf::SoundBuffer critSoundBuffer;
+	sf::Sound critSound;
+
+	sf::SoundBuffer enemyDiesBuffer;
+	sf::Sound enemyDies;
+
+	sf::SoundBuffer bossDiesBuffer;
+	sf::Sound bossDies;
 
 public:
 
