@@ -17,6 +17,7 @@ public:
 
 	bool checkAttackTimer(sf::Clock* attackTimer);
 	
+	bool getWasCrit();
 
 	sf::Texture* getBulletTexture();
 
@@ -29,6 +30,7 @@ private:
 	float criticalDamage;
 	int pierce;
 	sf::Time attackSpeed;
+	bool wasCrit;
 
 	sf::Texture* defaultBulletTexture;
 	
