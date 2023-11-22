@@ -30,6 +30,7 @@ public:
 
 	sf::Text updateFPS();
 	sf::Text updateLevel(Player* player);
+
 	sf::Sprite updateHpBar(Player* player);
 	sf::Sprite updateXpBar(Player* player);
 

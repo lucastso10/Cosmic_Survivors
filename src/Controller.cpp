@@ -101,25 +101,25 @@ void Controller::eventHandlerGame()
 	Player* player = this->game->getPlayer();
 	// tratando as flags, talvez tenha um melho jeito de fazer isso
 	if (this->flags[sf::Keyboard::D] && player->getPos().x < 4070) { // tamanho do mapa hard coded foda-se B)
-		player->move(sf::Vector2f(0.1f, 0.0f)); // precisa de alteração para a velocidade do player mudar
+		player->move(sf::Vector2f(player->getSpeed(), 0.0f)); // precisa de alteração para a velocidade do player mudar
 		player->setWalking(true);
 		moved = true;
 	}
 
 	if (this->flags[sf::Keyboard::A] && player->getPos().x > 10) {
-		player->move(sf::Vector2f(-0.1f, 0.0f));
+		player->move(sf::Vector2f(player->getSpeed() * -1, 0.0f));
 		player->setWalking(true);
 		moved = true;
 	}
 
 	if (this->flags[sf::Keyboard::W] && player->getPos().y > 10) {
-		player->move(sf::Vector2f(0.0f, -0.1f));
+		player->move(sf::Vector2f(0.0f, player->getSpeed() * -1));
 		player->setWalking(true);
 		moved = true;
 	}
 
 	if (this->flags[sf::Keyboard::S] && player->getPos().y < 2240) {
-		player->move(sf::Vector2f(0.0f, 0.1f));
+		player->move(sf::Vector2f(0.0f, player->getSpeed()));
 		player->setWalking(true);
 		moved = true;
 	}

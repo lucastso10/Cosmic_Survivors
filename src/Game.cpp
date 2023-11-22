@@ -97,6 +97,8 @@ void Game::updateFrame()
 
 	// desenha os tiros na tela
 	for (auto& bullet : this->bullets) {
+		if (bullet->getDrawingText())
+			this->renderWindow->draw(bullet->drawDamage());
 		if (bullet->isDead())
 			continue;
 		bullet->moveDirection();
@@ -107,8 +109,10 @@ void Game::updateFrame()
 				continue;
 
 			if (bullet->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
-				bullet->enemiesHit++;	
-				enemy->setHealth(enemy->getHealth() - this->weapon->calculateDamage()); // seria bom uma função para diminuir a vida de uma entidade
+				bullet->enemiesHit++;
+				int dano = (int)this->weapon->calculateDamage();
+				enemy->setHealth(enemy->getHealth() - dano);
+				this->renderWindow->draw(bullet->drawDamage(dano, this->weapon->getWasCrit()));
 				if (this->weapon->getPierce() <= bullet->enemiesHit){
 					bullet->setHealth(0.f);
 					bullet->enemiesHit = 0;
@@ -167,10 +171,7 @@ void Game::updateFrame()
 	this->renderWindow->draw(this->hud->updateHpBar(this->player));
 	this->renderWindow->draw(this->hud->updateLevel(this->player));
 	this->renderWindow->draw(this->hud->updateXpBar(this->player));
-
 	this->renderWindow->draw(this->hud->updateFPS());
-
-	
 
 	this->renderWindow->setView(this->view);
 
