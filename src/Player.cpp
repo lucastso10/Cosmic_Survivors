@@ -1,10 +1,9 @@
 #include "Player.h"
 #include <iostream>
-Player::Player(std::string file, sf::Vector2f start_pos)
+Player::Player(sf::Vector2f start_pos)
 {
 	this->setHealth(100);
-	this->setArmor(20);
-	this->setSpeed(10);
+	this->setSpeed(1.f);
 
 	this->xp = 0;
 	this->level = 0;
@@ -13,7 +12,7 @@ Player::Player(std::string file, sf::Vector2f start_pos)
 	sf::Texture* texture = new sf::Texture;
 	sf::Sprite sprite;
 
-	texture->loadFromFile(file);
+	texture->loadFromFile("../images/Player/move.png");
 
 	if (texture == nullptr)
 	  std::cout << "oh no hermano!\n";
