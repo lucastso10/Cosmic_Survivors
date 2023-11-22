@@ -39,6 +39,7 @@ void Menu::set_values() {
 
 	music.openFromFile("../sounds/Title_screen.wav");
 	music.setLoop(true);
+	music.setVolume(50.f);
 	music.play();
 
 	buffer.loadFromFile("../sounds/button_click.wav");
