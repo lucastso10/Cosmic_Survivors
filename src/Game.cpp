@@ -16,9 +16,9 @@ Game::Game()
 	this->weapon = nullptr;
 	this->map = nullptr;
 
-  this->enemySpawnRate = 3.f; //3.f	
+        this->enemySpawnRate = 3.f; //3.f	
   
-	MenuType = 1;
+	this->MenuType = 1;
   
 	this->shootSoundBuffer.loadFromFile("../sounds/normal_shot.wav");
 	this->shootSound.setBuffer(this->shootSoundBuffer);

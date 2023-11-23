@@ -1,5 +1,6 @@
 #include "Weapon.h"
 #include <iostream>
+#include <math.h>
 
 Weapon::Weapon(sf::Texture* defaultBulletTexture)
 {
@@ -11,7 +12,7 @@ Weapon::Weapon(sf::Texture* defaultBulletTexture)
 	this->attackSpeed = sf::seconds(1.0f);
 	this->pierce = 1;
 
-	this->type = SHOTGUN;
+	this->type = SIMPLE;
 
 	this->defaultBulletTexture = defaultBulletTexture;
 	
