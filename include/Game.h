@@ -66,10 +66,10 @@ public:
 	void quitGame();
 	bool isRunning();
 	int MenuType; // Menu type tem o valor 1 quando no menu principal, 2 no menu de pausa e 3 no menu de upgrades
+	bool Sons, Musica, FPS, Numeros_dano; // a variável booleana tem valor 1 quando ativada e 0 quando desativada
 	float getGameTime();
 
-	
-	
+
 };
 
 #endif

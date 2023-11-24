@@ -28,7 +28,7 @@ void Menu::set_values() {
 	bg->setTexture(*image);
 	option_bg->setTexture(*image_option);
 
-	options_main_menu = { "Wipe Out", "Jogar", "Opções", "Fechar" };
+	options_main_menu = { "Wipe Out", "Jogar", "Opcoes", "Fechar" };
 	main_menu_texts.resize(4);
 	main_menu_coords = {{200,-80},{610,435},{620,595},{620,660}};
 	main_menu_sizes = {400,100,60,60};
@@ -42,10 +42,10 @@ void Menu::set_values() {
 		main_menu_texts[i].setPosition(main_menu_coords[i]);
 	}
 
-	options_option_menu = {"Voltar", "Fechar", "Mostrar dano", "Mostrar FPS", "Efeitos Sonoros", "Música"};
+	options_option_menu = {"Voltar", "Fechar", "Mostrar dano", "Mostrar FPS", "Sons", "Musica"};
 	option_menu_texts.resize(6);
-	option_menu_coords = { {40,40}, {1070,40}, {530,160}, {530,280}, {530,400}, {530,520} };
-	option_menu_sizes = {100,100,60,60,60,60};
+	option_menu_coords = { {80,8}, {1120,8}, {570,155}, {570,275}, {640,395}, {625,515} };
+	option_menu_sizes = {80,80,55,55,55,55};
 	for (size_t i{}; i < option_menu_texts.size(); ++i) {
 		option_menu_texts[i].setFont(*font);
 		option_menu_texts[i].setString(options_option_menu[i]);
