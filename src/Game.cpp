@@ -19,7 +19,7 @@ Game::Game()
   this->enemySpawnRate = 3.f; //3.f	
   
 	MenuType = 1;
-  
+	Sons = Musica = Numeros_dano = FPS = true;
 	this->shootSoundBuffer.loadFromFile("../sounds/normal_shot.wav");
 	this->shootSound.setBuffer(this->shootSoundBuffer);
 	this->shootSound.setVolume(50.f);
